@@ -1,0 +1,76 @@
+{
+  "brand": {
+    "name": "英飞凌",
+    "nameEn": "Infineon",
+    "company": "力通",
+    "companyEn": "litong",
+    "slogan": "中国8强电子元件代理商",
+    "sloganEn": "China's Top 8 Electronic Component Distributors",
+    "coreKeywords": ["英飞凌代理", "infineon 代理", "英飞凌现货", "英飞凌授权代理"]
+  },
+  "global": {
+    "siteName": "力通 · 英飞凌代理",
+    "titleSuffix": "力通",
+    "logo": "assets/img/logo.svg",
+    "nav": [
+      { "name": "首页", "url": "/" },
+      { "name": "产品中心", "url": "/products/" },
+      { "name": "解决方案", "url": "/solutions/" },
+      { "name": "技术支持", "url": "/support/" },
+      { "name": "新闻中心", "url": "/news/" },
+      { "name": "关于我们", "url": "/about/" },
+      { "name": "联系我们", "url": "/contact/" }
+    ],
+    "company": {
+      "name": "力通",
+      "intro": "力通是专业的英飞凌代理与电子元器件供应商，提供英飞凌现货、授权代理、选型支持与快速报价服务。",
+      "advantages": ["库存深度", "技术支持团队", "物流能力", "正品保障与报关单"]
+    },
+    "footer": {
+      "copyright": "© 2026 力通 litong. 保留所有权利。",
+      "links": [
+        { "name": "网站地图", "url": "/sitemap.xml" },
+        { "name": "robots", "url": "/robots.txt" }
+      ]
+    },
+    "offices": [
+      {
+        "name": "香港总部",
+        "address": "香港沙田香港科学园科技大道东7号绿景楼5楼",
+        "phone": "0852-24248227",
+        "contact": "",
+        "fax": "0852-24248227"
+      },
+      {
+        "name": "北京办事处",
+        "address": "北京市通州区恒业北七街6号院19号楼2层101-215室",
+        "phone": "18612518271",
+        "contact": "王女士",
+        "fax": "010-52283227"
+      },
+      {
+        "name": "上海办事处",
+        "address": "上海市裕通路100号宝矿洲际商务中心705-706室",
+        "phone": "18612518271",
+        "contact": "王女士",
+        "fax": "021-85211511"
+      },
+      {
+        "name": "深圳办事处",
+        "address": "深圳市福田保税区红花路6号长平商务大厦306-308室",
+        "phone": "15013702378",
+        "contact": "周先生",
+        "fax": "0755-82506511"
+      }
+    ],
+    "qq": "2377687015",
+    "contactImage": "assets/img/contact.png",
+    "keywords": {
+      "core": ["英飞凌代理", "infineon 代理"],
+      "region": ["英飞凌代理USA", "英飞凌代理商india", "英飞凌日本代理", "英飞凌韩国代理", "英飞凌德国代理", "英飞凌越南代理", "英飞凌墨西哥代理", "英飞凌俄罗斯代理", "英飞凌土耳其代理"],
+      "product": ["英飞凌IGBT代理", "英飞凌MOSFET代理", "英飞凌MCU代理", "英飞凌传感器代理"],
+      "qualification": ["英飞凌授权代理", "英飞凌一级代理", "英飞凌现货"],
+      "question": ["如何选择英飞凌MCU", "英飞凌代理商有哪些", "英飞凌官网代理查询"]
+    }
+  }
+}
