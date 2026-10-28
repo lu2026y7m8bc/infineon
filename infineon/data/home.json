@@ -1,0 +1,96 @@
+{
+  "brand": {
+    "name": "英飞凌",
+    "nameEn": "Infineon",
+    "company": "力通",
+    "companyEn": "litong"
+  },
+  "page": {
+    "id": "home",
+    "type": "home",
+    "seo": {
+      "title": "英飞凌代理_英飞凌现货供应商-力通 | infineon代理商",
+      "description": "力通（litong）是专业英飞凌代理，提供 Infineon 代理、英飞凌现货、授权代理与 FAE 技术支持，覆盖 MCU、IGBT、MOSFET、传感器，快速报价与样品申请。",
+      "keywords": ["英飞凌代理", "infineon 代理", "英飞凌现货", "英飞凌授权代理", "英飞凌MCU代理", "英飞凌IGBT代理"],
+      "canonical": "/"
+    },
+    "breadcrumbs": [],
+    "content": {
+      "hero": {
+        "title": "英飞凌代理 · 授权渠道 · 现货直供",
+        "subtitle": "力通提供英飞凌全系列 MCU、IGBT、MOSFET 与传感器现货，配套 FAE 选型支持与快速报价，服务新能源汽车、光伏储能、工业驱动与电源客户。",
+        "primaryCta": { "label": "获取报价", "url": "/contact/" },
+        "secondaryCta": { "label": "产品选型", "url": "/products/" },
+        "trust": ["授权代理", "现货库存", "FAE 技术支持", "报关单齐全"]
+      },
+      "advantages": [
+        { "icon": "assets/img/icon-stock.svg", "title": "库存深度", "desc": "常用型号常备现货，缩短交期，支持小批量样品与量产备货。" },
+        { "icon": "assets/img/icon-fae.svg", "title": "技术支持", "desc": "FAE 团队提供选型、替代料与电路设计建议，降低导入风险。" },
+        { "icon": "assets/img/icon-logistics.svg", "title": "物流能力", "desc": "香港、北京、上海、深圳多地协同，支持国内与出口发货。" },
+        { "icon": "assets/img/icon-quality.svg", "title": "正品保障", "desc": "授权渠道与报关单可核验，提供批次追溯与质量文件。" }
+      ],
+      "categories": [
+        { "name": "MCU 微控制器", "slug": "mcu", "icon": "assets/img/icon-mcu.svg", "desc": "AURIX™、XMC™、PSoC™ 系列，覆盖汽车与工业实时控制。", "count": 6, "url": "/products/mcu/" },
+        { "name": "IGBT 功率器件", "slug": "igbt", "icon": "assets/img/icon-igbt.svg", "desc": "IGBT 模块与分立器件，适用于电机驱动、光伏与储能。", "count": 6, "url": "/products/igbt/" },
+        { "name": "MOSFET", "slug": "mosfet", "icon": "assets/img/icon-mosfet.svg", "desc": "OptiMOS™、CoolMOS™ 等，覆盖电源与电机开关应用。", "count": 6, "url": "/products/mosfet/" },
+        { "name": "传感器", "slug": "sensors", "icon": "assets/img/icon-sensors.svg", "desc": "磁、压力、电流传感器，用于位置检测与系统监测。", "count": 6, "url": "/products/sensors/" }
+      ],
+      "solutions": [
+        { "title": "新能源汽车三电系统", "slug": "xev", "summary": "电驱逆变、OBC 与 BMS 的英飞凌 IGBT/SiC 与 MCU 选型方案。", "industry": "新能源汽车", "url": "/solutions/xev/" },
+        { "title": "光伏与储能逆变", "slug": "pv-storage", "summary": "面向组串逆变与储能 PCS 的功率器件与驱动方案。", "industry": "光伏储能", "url": "/solutions/pv-storage/" },
+        { "title": "工业电机驱动与伺服", "slug": "industrial-drive", "summary": "变频器、伺服与 BLDC 驱动的功率与控制组合。", "industry": "工业自动化", "url": "/solutions/industrial-drive/" },
+        { "title": "充电桩与数据中心电源", "slug": "ev-charging-datacenter", "summary": "高功率密度电源与充电模块的器件选型。", "industry": "电源与充电", "url": "/solutions/ev-charging-datacenter/" }
+      ],
+      "articles": [
+        { "title": "如何选择最适合您项目的英飞凌MCU？", "slug": "how-to-choose-infineon-mcu", "category": "guides", "date": "2026-09-18", "summary": "从主频、Flash、外设与封装四个维度建立选型框架。", "url": "/support/guides/how-to-choose-infineon-mcu.html" },
+        { "title": "IGBT 驱动电路设计与栅极电阻选型实战", "slug": "igbt-gate-driver-design", "category": "app-notes", "date": "2026-09-10", "summary": "从开关损耗与 dv/dt 出发，给出栅极电阻与驱动功率的计算思路。", "url": "/support/app-notes/igbt-gate-driver-design.html" },
+        { "title": "MOSFET 开关损耗与过热问题排查手册", "slug": "mosfet-overheat", "category": "troubleshooting", "date": "2026-08-29", "summary": "定位驱动、散热与布局三类过热根因，并给出整改路径。", "url": "/support/troubleshooting/mosfet-overheat.html" }
+      ],
+      "news": [
+        { "title": "力通获英飞凌 2026 年度亚太区优秀代理商", "slug": "litong-infineon-award-2026", "category": "company", "date": "2026-09-22", "summary": "力通在交付、技术支持与合规方面获得认可。", "url": "/news/litong-infineon-award-2026.html" },
+        { "title": "英飞凌发布 AURIX™ TC4x，面向软件定义汽车", "slug": "infineon-tc4x-launch", "category": "industry", "date": "2026-09-15", "summary": "新一代 MCU 强化实时控制与网络安全能力。", "url": "/news/infineon-tc4x-launch.html" },
+        { "title": "力通深圳智能仓储中心启用，现货备货提升", "slug": "litong-shenzhen-warehouse", "category": "company", "date": "2026-08-30", "summary": "仓储与分拣升级，常用型号出货效率提升。", "url": "/news/litong-shenzhen-warehouse.html" }
+      ],
+      "cta": {
+        "title": "需要英飞凌现货与选型支持？",
+        "desc": "告诉我们型号、数量与项目阶段，力通将在一个工作日内响应报价与替代建议。",
+        "primaryCta": { "label": "获取报价", "url": "/contact/" },
+        "secondaryCta": { "label": "联系技术顾问", "url": "/contact/" }
+      }
+    },
+    "faq": [
+      {
+        "question": "力通是英飞凌授权代理吗？",
+        "answer": [
+          "力通为英飞凌授权渠道合作方，提供英飞凌代理、现货供应与技术支持服务，可提供相关授权与报关单文件供核验。",
+          "若您需要核验具体型号的渠道与批次，可在联系我们页面提交型号与数量，我们会提供对应的资质与文件说明。"
+        ],
+        "decisionGuide": "前往「关于我们」查看资质与报关单，或直接提交询价。"
+      },
+      {
+        "question": "英飞凌现货一般多久能发货？",
+        "answer": [
+          "常用 MCU、IGBT、MOSFET 与传感器型号在深圳、香港仓有备货，确认订单后通常可在 1–3 个工作日内安排发货。",
+          "紧缺型号会给出预计交期与替代料建议，避免项目因单一料号停摆。"
+        ],
+        "decisionGuide": "提交型号与数量，获取实时库存与交期。"
+      },
+      {
+        "question": "如何选择适合项目的英飞凌MCU？",
+        "answer": [
+          "建议先明确主频、Flash/RAM、外设接口（CAN、Ethernet、ADC）与封装，再对照 AURIX™、XMC™、PSoC™ 系列定位筛选。",
+          "若涉及功能安全或汽车应用，还需确认安全等级与温度等级。"
+        ],
+        "decisionGuide": "阅读选型指南，或让 FAE 根据项目参数协助选型。"
+      },
+      {
+        "question": "英飞凌代理商有哪些？如何判断正规渠道？",
+        "answer": [
+          "建议从授权资质、报关单、批次追溯与技术支持能力四方面核验。正规代理通常能提供完整文件与 FAE 支持。",
+          "力通可提供报关单与批次信息，并支持样品验证与小批量试产。"
+        ],
+        "decisionGuide": "查看关于我们的资质展示，或联系销售核验。"
+      }
+    ]
+  }
+}
