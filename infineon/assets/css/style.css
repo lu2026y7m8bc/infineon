@@ -490,3 +490,131 @@ body.nav-open {
   .header-actions .header-cta { display: none; }
 }
 
+/* ==========================================================================
+   T1.2 页脚（Footer）
+   ========================================================================== */
+
+.site-footer {
+  background: var(--color-footer);
+  color: #cfd8e3;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.4fr;
+  gap: var(--space-8);
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-12);
+}
+
+.footer-brand-name {
+  margin-bottom: var(--space-3);
+  color: var(--color-white);
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.footer-brand-name span {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #9fb3c8;
+}
+
+.footer-intro,
+.footer-contact p {
+  margin-bottom: var(--space-2);
+  color: #cfd8e3;
+  font-size: 14px;
+}
+
+.footer-slogan {
+  margin-top: var(--space-3);
+  color: #9fb3c8;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.footer-title {
+  margin-bottom: var(--space-4);
+  color: var(--color-white);
+  font-size: 16px;
+}
+
+.footer-links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: var(--space-2);
+}
+
+.footer-links a,
+.footer-contact a {
+  color: #cfd8e3;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.footer-links a:hover,
+.footer-contact a:hover {
+  color: var(--color-white);
+  text-decoration: underline;
+}
+
+.footer-qq strong {
+  color: var(--color-white);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.footer-bottom-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-top: var(--space-4);
+  padding-bottom: var(--space-4);
+}
+
+.footer-bottom-inner p {
+  margin: 0;
+  color: #9fb3c8;
+  font-size: 13px;
+}
+
+.footer-bottom-links {
+  display: flex;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-bottom-links a {
+  color: #9fb3c8;
+  font-size: 13px;
+}
+
+@media (max-width: 999px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 640px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    padding-top: var(--space-12);
+  }
+  .footer-bottom-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
