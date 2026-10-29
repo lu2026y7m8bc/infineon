@@ -8,6 +8,7 @@
     "generate": "node scripts/generate.mjs",
     "validate": "node scripts/validate-json.mjs && node scripts/validate-links.mjs && node scripts/verify-site.mjs",
     "dist": "node scripts/build-dist.mjs",
+    "preview": "node scripts/preview-server.mjs 8765",
     "build": "npm run seed && npm run generate && npm run validate && npm run dist"
   }
 }
