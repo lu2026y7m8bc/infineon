@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{SEO_TITLE}}</title>
+  <meta name="description" content="{{SEO_DESCRIPTION}}">
+  <meta name="keywords" content="{{SEO_KEYWORDS}}">
+  <link rel="canonical" href="{{CANONICAL}}">
+  <meta property="og:title" content="{{OG_TITLE}}">
+  <meta property="og:description" content="{{OG_DESCRIPTION}}">
+  <meta property="og:url" content="{{OG_URL}}">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  {{SCHEMA}}
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  {{HEADER}}
+  <main id="main">
+    <div class="container">
+      {{BREADCRUMB}}
+      <header class="page-header">
+        <h1>{{PAGE_TITLE}}</h1>
+        <p>{{PAGE_DESC}}</p>
+      </header>
+      <div class="grid grid-3">{{ARTICLE_CARDS}}</div>
+    </div>
+  </main>
+  {{FOOTER}}
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://infineon.pages.dev/sitemap.xml

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>新能源汽车三电系统解决方案_英飞凌方案与BOM-力通</title>
+  <meta name="description" content="面向电驱逆变、OBC、DC-DC 与 BMS 的英飞凌 IGBT/SiC、AURIX™ MCU 与电流/角度传感器组合，兼顾效率、安全与供货稳定。">
+  <meta name="keywords" content="新能源汽车三电系统解决方案,英飞凌新能源汽车方案,英飞凌BOM">
+  <link rel="canonical" href="https://infineon.pages.dev/solutions/xev/">
+  <meta property="og:title" content="新能源汽车三电系统解决方案_英飞凌方案与BOM-力通">
+  <meta property="og:description" content="面向电驱逆变、OBC、DC-DC 与 BMS 的英飞凌 IGBT/SiC、AURIX™ MCU 与电流/角度传感器组合，兼顾效率、安全与供货稳定。">
+  <meta property="og:url" content="https://infineon.pages.dev/solutions/xev/">
+  <meta property="og:type" content="article">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://infineon.pages.dev/"},{"@type":"ListItem","position":2,"name":"解决方案","item":"https://infineon.pages.dev/solutions/"},{"@type":"ListItem","position":3,"name":"新能源汽车三电系统解决方案","item":"https://infineon.pages.dev/solutions/xev/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"400V 与 800V 平台如何选择功率器件？","acceptedAnswer":{"@type":"Answer","text":"400V 平台可优先评估 1200V IGBT 模块，成本与成熟度更友好；800V 平台可评估 SiC 以降低损耗并提升频率。\n最终要看效率目标、散热条件、成本与供货，建议用样机对比开关损耗与温升。"}},{"@type":"Question","name":"电驱逆变如何做热设计复核？","acceptedAnswer":{"@type":"Answer","text":"先估算模块损耗，再结合结到壳热阻、散热器与冷却条件计算结温，并留出环境与老化裕量。\n样机阶段应测开关波形、壳温与冷却液温度，避免只按手册典型值设计。"}},{"@type":"Question","name":"角度传感器安装有哪些注意点？","acceptedAnswer":{"@type":"Answer","text":"要保证磁铁与芯片同轴、气隙稳定，并控制磁铁尺寸与温度特性。\n安装公差与结构应力会直接影响角度误差，建议在结构设计早期引入规格书。"}},{"@type":"Question","name":"如何获取三电系统 BOM 与报价？","acceptedAnswer":{"@type":"Answer","text":"可提供整车平台电压、功率等级与目标车型，我们会给出器件组合与替代建议。\n确认 BOM 后可分批报价，并协调样品与量产备货。"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"新能源汽车三电系统解决方案","description":"面向电驱逆变、OBC、DC-DC 与 BMS 的英飞凌 IGBT/SiC、AURIX™ MCU 与电流/角度传感器组合，兼顾效率、安全与供货稳定。","author":{"@type":"Organization","name":"力通"},"mainEntityOfPage":"https://infineon.pages.dev/solutions/xev/"}</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header class="site-header" data-site-header>
+  <div class="container header-inner">
+    <a class="logo" href="/" aria-label="力通 英飞凌代理 首页">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" width="32" height="32" role="img" aria-hidden="true">
+          <rect x="2" y="2" width="36" height="36" rx="8" fill="#0072ce"></rect>
+          <path d="M11 27V13h4.6l4.4 7.2L24.4 13H29v14h-3.8v-8.6l-3.6 5.8h-3.2l-3.6-5.8V27H11z" fill="#fff"></path>
+        </svg>
+      </span>
+      <span class="logo-text">力通</span>
+      <span class="logo-tagline">China's Top 8 Electronic Component Distributors</span>
+    </a>
+
+    <nav class="site-nav" aria-label="主导航">
+      <ul class="nav-list">
+        <!-- 当前项由生成器按页面注入 .is-active + -->
+        <li class="nav-item"><a class="nav-link" href="/">首页</a></li>
+        <li class="nav-item has-dropdown">
+          <a class="nav-link" href="/products/" aria-haspopup="true" aria-expanded="false" data-dropdown-toggle>产品中心</a>
+          <ul class="dropdown" aria-label="产品分类">
+            <li><a href="/products/mcu/">MCU 微控制器</a></li>
+            <li><a href="/products/igbt/">IGBT 功率器件</a></li>
+            <li><a href="/products/mosfet/">MOSFET</a></li>
+            <li><a href="/products/sensors/">传感器</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link is-active" aria-current="page" href="/solutions/">解决方案</a></li>
+        <li class="nav-item"><a class="nav-link" href="/support/">技术支持</a></li>
+        <li class="nav-item"><a class="nav-link" href="/news/">新闻中心</a></li>
+        <li class="nav-item"><a class="nav-link" href="/about/">关于我们</a></li>
+        <li class="nav-item"><a class="nav-link" href="/contact/">联系我们</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <a class="header-cta" href="/contact/">获取报价</a>
+      <button class="nav-toggle" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="mobile-nav" data-nav-toggle>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav" id="mobile-nav" hidden data-mobile-nav>
+    <nav aria-label="移动端主导航">
+      <ul class="mobile-nav-list">
+        <li><a href="/">首页</a></li>
+        <li><a href="/products/">产品中心</a></li>
+        <li><a href="/products/mcu/">— MCU 微控制器</a></li>
+        <li><a href="/products/igbt/">— IGBT 功率器件</a></li>
+        <li><a href="/products/mosfet/">— MOSFET</a></li>
+        <li><a href="/products/sensors/">— 传感器</a></li>
+        <li><a href="/solutions/">解决方案</a></li>
+        <li><a href="/support/">技术支持</a></li>
+        <li><a href="/news/">新闻中心</a></li>
+        <li><a href="/about/">关于我们</a></li>
+        <li><a href="/contact/">联系我们</a></li>
+      </ul>
+    </nav>
+    <a class="header-cta mobile-nav-cta" href="/contact/">获取报价</a>
+  </div>
+</header>
+
+  <main id="main">
+    <div class="container"><nav class="breadcrumb" aria-label="面包屑"><ol class="breadcrumb-list"><li class="breadcrumb-item"><a href="/">首页</a></li><li class="breadcrumb-item"><a href="/solutions/">解决方案</a></li><li class="breadcrumb-item" aria-current="page">新能源汽车三电系统解决方案</li></ol></nav></div>
+    <div class="news-banner">
+      <div class="container">
+        <h1>新能源汽车三电系统解决方案</h1>
+        <p>面向电驱逆变、OBC、DC-DC 与 BMS 的英飞凌 IGBT/SiC、AURIX™ MCU 与电流/角度传感器组合，兼顾效率、安全与供货稳定。</p>
+      </div>
+    </div>
+
+    <div class="container section">
+      <div class="layout-content-sidebar">
+        <div class="article-content">
+          <p>新能源汽车三电系统由电池、电驱与电控构成，核心挑战是在有限体积与成本下同时满足效率、可靠性、功能安全与 EMC。电驱逆变需要在高频开关下控制损耗与温升，OBC 与 DC-DC 要在宽输入范围内保持高效率，BMS 则要兼顾采样精度与隔离安全。英飞凌在 IGBT/SiC、MCU、驱动与传感器上都有完整组合，适合做系统级选型而不是单点替换。</p><p>电驱逆变通常采用三相全桥拓扑，功率器件可选择 IGBT 模块或 SiC 模块。对 400V 平台，1200V IGBT 模块在成本与成熟度上更有优势；对 800V 平台或追求更高频率与效率的场景，可评估 SiC。选型时要结合母线电压、峰值电流、开关频率、短路能力与散热条件，预留足够的电压与电流裕量，并通过样机波形与温升验证。</p><p>控制与传感部分，AURIX™ TC3xx 适合域控制与电机控制，具备多核、实时性与安全能力；转子位置可用 GMR/TMR 角度传感器，电流检测可用无磁芯电流传感器。传感链路要与控制环路带宽匹配，注意气隙、磁铁、母排布局与温漂，避免机械安装误差被误判为芯片问题。</p><p>OBC 与 DC-DC 侧，PFC 与 LLC 拓扑对器件的要求不同：PFC 更关注导通损耗与耐压，LLC 更关注开关损耗与寄生参数。CoolMOS™ 与 OptiMOS™ 可覆盖不同功率段，选型时要同时看 RDS(on)、Qg、封装热阻与驱动电压，并在样机上测效率曲线与 EMI。</p><p>量产阶段还要考虑供货与合规：功率模块与 MCU 的交期、批次追溯、报关单与功能安全文件都要提前确认。力通可提供英飞凌代理渠道、现货/询价支持、替代料建议与 FAE 热设计复核，帮助把选型、样品与量产备货串起来。</p><p>在 EMC 与功能安全方面，电驱逆变的高 dv/dt 与高 di/dt 会影响整车电磁环境，需要从驱动电阻、缓冲、屏蔽与接地多维度控制。</p><p>功能安全还要结合 MCU 安全机制、诊断覆盖与失效响应，提前规划文档与测试。</p>
+
+          <section class="section">
+            <h2>方案框图</h2>
+            <svg viewBox="0 0 400 260" role="img" aria-label="新能源汽车三电系统方案框图：动力电池经 OBC/DC-DC 与电驱逆变连接电机，BMS 与整车控制器通过 CAN 通信，电流与角度传感器反馈给控制器"><rect width="400" height="260" rx="12" fill="#e6f2fb"></rect><rect x="120" y="72.80000000000001" width="160" height="114.4" rx="8" fill="#0072ce"></rect><text x="200" y="136" text-anchor="middle" fill="#fff" font-size="16">新能源汽车三电系统方案框图：动力电池经 OBC/DC-DC 与电驱逆变连接电机，BMS 与整车控制器通过 CAN 通信，电流与角度传感器反馈给控制器</text></svg>
+          </section>
+
+          <section class="section">
+            <h2>核心优势</h2>
+            <div class="grid grid-2"><article class="card card--icon"><div class="card-media" aria-hidden="true"><svg viewBox="0 0 400 260" role="img" aria-label="系统级组合"><rect width="400" height="260" rx="12" fill="#e6f2fb"></rect><rect x="120" y="72.80000000000001" width="160" height="114.4" rx="8" fill="#0072ce"></rect><text x="200" y="136" text-anchor="middle" fill="#fff" font-size="16">系统级组合</text></svg></div><div class="card-body"><h3 class="card-title">系统级组合</h3><p class="card-text">功率、控制、驱动与传感来自同一体系，减少兼容风险。</p></div></article><article class="card card--icon"><div class="card-media" aria-hidden="true"><svg viewBox="0 0 400 260" role="img" aria-label="效率与安全并重"><rect width="400" height="260" rx="12" fill="#e6f2fb"></rect><rect x="120" y="72.80000000000001" width="160" height="114.4" rx="8" fill="#0072ce"></rect><text x="200" y="136" text-anchor="middle" fill="#fff" font-size="16">效率与安全并重</text></svg></div><div class="card-body"><h3 class="card-title">效率与安全并重</h3><p class="card-text">兼顾开关损耗、热设计与功能安全需求。</p></div></article><article class="card card--icon"><div class="card-media" aria-hidden="true"><svg viewBox="0 0 400 260" role="img" aria-label="供货可控"><rect width="400" height="260" rx="12" fill="#e6f2fb"></rect><rect x="120" y="72.80000000000001" width="160" height="114.4" rx="8" fill="#0072ce"></rect><text x="200" y="136" text-anchor="middle" fill="#fff" font-size="16">供货可控</text></svg></div><div class="card-body"><h3 class="card-title">供货可控</h3><p class="card-text">主流型号常备现货，紧缺批次给出替代与交期。</p></div></article><article class="card card--icon"><div class="card-media" aria-hidden="true"><svg viewBox="0 0 400 260" role="img" aria-label="本地 FAE"><rect width="400" height="260" rx="12" fill="#e6f2fb"></rect><rect x="120" y="72.80000000000001" width="160" height="114.4" rx="8" fill="#0072ce"></rect><text x="200" y="136" text-anchor="middle" fill="#fff" font-size="16">本地 FAE</text></svg></div><div class="card-body"><h3 class="card-title">本地 FAE</h3><p class="card-text">提供选型、替代料与热设计复核。</p></div></article></div>
+          </section>
+
+          <section class="section">
+            <h2>技术实力</h2>
+            <div class="grid grid-3"><article class="card card--icon"><div class="card-media" aria-hidden="true"><svg viewBox="0 0 400 260" role="img" aria-label="电驱逆变经验"><rect width="400" height="260" rx="12" fill="#e6f2fb"></rect><rect x="120" y="72.80000000000001" width="160" height="114.4" rx="8" fill="#0072ce"></rect><text x="200" y="136" text-anchor="middle" fill="#fff" font-size="16">电驱逆变经验</text></svg></div><div class="card-body"><h3 class="card-title">电驱逆变经验</h3><p class="card-text">覆盖 IGBT/SiC 模块选型、驱动与散热评估。</p></div></article><article class="card card--icon"><div class="card-media" aria-hidden="true"><svg viewBox="0 0 400 260" role="img" aria-label="控制与传感"><rect width="400" height="260" rx="12" fill="#e6f2fb"></rect><rect x="120" y="72.80000000000001" width="160" height="114.4" rx="8" fill="#0072ce"></rect><text x="200" y="136" text-anchor="middle" fill="#fff" font-size="16">控制与传感</text></svg></div><div class="card-body"><h3 class="card-title">控制与传感</h3><p class="card-text">AURIX™ MCU 与角度/电流传感器的匹配经验。</p></div></article><article class="card card--icon"><div class="card-media" aria-hidden="true"><svg viewBox="0 0 400 260" role="img" aria-label="量产支持"><rect width="400" height="260" rx="12" fill="#e6f2fb"></rect><rect x="120" y="72.80000000000001" width="160" height="114.4" rx="8" fill="#0072ce"></rect><text x="200" y="136" text-anchor="middle" fill="#fff" font-size="16">量产支持</text></svg></div><div class="card-body"><h3 class="card-title">量产支持</h3><p class="card-text">样品、批次追溯、报关与备货协同。</p></div></article></div>
+          </section>
+
+          <section class="section">
+            <h2>推荐物料清单 BOM</h2>
+            <div class="table-wrap"><table class="data-table"><caption>推荐物料清单（BOM）</caption><thead><tr><th>型号</th><th>角色</th><th>关键参数</th></tr></thead><tbody><tr><td class="col-model"><a href="/products/igbt/ff450r12me4.html">FF450R12ME4</a></td><td>电驱逆变主功率模块</td><td>1200V/450A</td></tr><tr><td class="col-model"><a href="/products/mcu/tc397.html">TC397</a></td><td>域控制/电机控制 MCU</td><td>300MHz/16MB Flash</td></tr><tr><td class="col-model"><a href="/products/sensors/tle5012b.html">TLE5012B</a></td><td>转子位置角度传感器</td><td>15bit GMR</td></tr><tr><td class="col-model"><a href="/products/sensors/tli4971.html">TLI4971</a></td><td>相电流检测</td><td>±50A</td></tr><tr><td class="col-model"><a href="/products/mosfet/ipp60r099p7.html">IPP60R099P7</a></td><td>OBC PFC 开关</td><td>600V/38A</td></tr></tbody></table></div>
+          </section>
+
+          <section class="section">
+            <h2>应用场景</h2>
+            <ul><li>电驱逆变</li><li>车载充电机 OBC</li><li>DC-DC 转换</li><li>电池管理 BMS</li></ul>
+          </section>
+
+          <section class="section">
+            <h2>系统集成要点</h2>
+            <ul><li>先确定母线电压与峰值电流，再反推器件耐压与并联方案。</li><li>驱动电阻与保护阈值需结合开关波形迭代。</li><li>传感链路要与控制环路带宽匹配，并做温漂校准。</li></ul>
+          </section>
+
+          <section class="section">
+            <h2>常见问题</h2>
+            <div class="faq-grid"><details class="faq-item" open><summary>400V 与 800V 平台如何选择功率器件？</summary><div class="faq-a"><p>400V 平台可优先评估 1200V IGBT 模块，成本与成熟度更友好；800V 平台可评估 SiC 以降低损耗并提升频率。</p><p>最终要看效率目标、散热条件、成本与供货，建议用样机对比开关损耗与温升。</p><p><strong>建议：</strong>提交平台电压与功率目标，获取器件对比与定制方案。</p></div></details><details class="faq-item"><summary>电驱逆变如何做热设计复核？</summary><div class="faq-a"><p>先估算模块损耗，再结合结到壳热阻、散热器与冷却条件计算结温，并留出环境与老化裕量。</p><p>样机阶段应测开关波形、壳温与冷却液温度，避免只按手册典型值设计。</p><p><strong>建议：</strong>联系 FAE 获取热设计复核清单。</p></div></details><details class="faq-item"><summary>角度传感器安装有哪些注意点？</summary><div class="faq-a"><p>要保证磁铁与芯片同轴、气隙稳定，并控制磁铁尺寸与温度特性。</p><p>安装公差与结构应力会直接影响角度误差，建议在结构设计早期引入规格书。</p><p><strong>建议：</strong>提交机械结构，获取传感器安装建议。</p></div></details><details class="faq-item"><summary>如何获取三电系统 BOM 与报价？</summary><div class="faq-a"><p>可提供整车平台电压、功率等级与目标车型，我们会给出器件组合与替代建议。</p><p>确认 BOM 后可分批报价，并协调样品与量产备货。</p><p><strong>建议：</strong>联系我们获取完整 BOM 与定制方案。</p></div></details></div>
+          </section>
+        </div>
+        <aside class="sidebar" aria-label="相关推荐"><div class="sidebar-sticky"><div class="sidebar-card"><h3>相关方案与文章</h3><ul class="related-list"><li><a href="/support/app-notes/igbt-gate-driver-design.html">IGBT 驱动电路设计与栅极电阻选型实战</a></li><li><a href="/solutions/pv-storage/">光伏与储能逆变方案</a></li><li><a href="/news/infineon-tc4x-launch.html">英飞凌 AURIX™ TC4x 发布解读</a></li></ul></div><div class="sidebar-card"><h3>获取报价</h3><p>提交型号与数量，快速获取报价与交期。</p><a class="btn btn-primary btn-block" href="/contact/">获取报价</a></div></div></aside>
+      </div>
+    </div>
+    <section class="detail-cta" aria-labelledby="detail-cta-title">
+  <div class="container detail-cta-inner">
+    <div>
+      <h2 id="detail-cta-title">需要英飞凌现货与技术支持？</h2>
+      <p>力通提供授权渠道、现货库存与 FAE 选型支持，快速响应您的项目需求。</p>
+    </div>
+    <div class="detail-cta-actions">
+      <a class="btn btn-primary" href="/contact/">获取报价</a>
+      <a class="btn btn-secondary" href="/contact/">联系技术顾问</a>
+    </div>
+  </div>
+</section>
+
+  </main>
+  <footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <p class="footer-brand-name">力通 <span>litong</span></p>
+      <p class="footer-intro">力通是专业的英飞凌代理与电子元器件供应商，提供英飞凌现货、授权代理、选型支持与快速报价服务。</p>
+      <p class="footer-slogan">China's Top 8 Electronic Component Distributors</p>
+    </div>
+
+    <nav class="footer-col" aria-label="快速导航">
+      <h2 class="footer-title">快速导航</h2>
+      <ul class="footer-links">
+        <li><a href="/">首页</a></li>
+        <li><a href="/products/">产品中心</a></li>
+        <li><a href="/solutions/">解决方案</a></li>
+        <li><a href="/support/">技术支持</a></li>
+        <li><a href="/news/">新闻中心</a></li>
+        <li><a href="/about/">关于我们</a></li>
+        <li><a href="/contact/">联系我们</a></li>
+      </ul>
+    </nav>
+
+    <nav class="footer-col" aria-label="产品分类">
+      <h2 class="footer-title">产品分类</h2>
+      <ul class="footer-links">
+        <li><a href="/products/mcu/">英飞凌 MCU 微控制器</a></li>
+        <li><a href="/products/igbt/">英飞凌 IGBT 功率器件</a></li>
+        <li><a href="/products/mosfet/">英飞凌 MOSFET</a></li>
+        <li><a href="/products/sensors/">英飞凌传感器</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer-col footer-contact">
+      <h2 class="footer-title">联系方式</h2>
+      <p class="footer-qq">QQ：<strong>2377687015</strong></p>
+      <p>香港总部：香港沙田香港科学园科技大道东7号绿景楼5楼</p>
+      <p>电话：0852-24248227</p>
+      <p><a href="/contact/">查看北京 / 上海 / 深圳办事处</a></p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>© 2026 力通 litong. 保留所有权利。</p>
+      <ul class="footer-bottom-links">
+        <li><a href="/sitemap.xml">网站地图</a></li>
+        <li><a href="/robots.txt">robots</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
