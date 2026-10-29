@@ -3,7 +3,7 @@
 > **版本**：v2.0　|　**上游**：`PRD.md` v2.1、`design.md` v2.0、`development-plan.md` v2.0
 > **规则**：只拆解执行任务，不重新设计方案；按实际执行顺序排列；依赖未满足不得开始；每次只做一条；完成须验证「完成标准」后才可标 done；不确定/冲突项单列为「确认/澄清」任务。
 > **状态**：`[~] in_progress`（全表**只能有一个**）、`[ ] pending`、`[x] done`、`[!] 确认/澄清`
-> **当前**：开发中，P0–P3 已完成（61 页已生成），Stage 4 修复已完成，进入 P4（T4.1 进行中）。
+> **当前**：全部完成（114/114），阶段五验证通过；已知限制见 `backlog.md`。
 
 ---
 
@@ -119,20 +119,20 @@
 
 | ID | 执行动作 | 依赖 | 完成标准 | 状态 |
 |---|---|---|---|---|
-| T4.1 | 每页唯一 title/description/canonical/OG/Twitter | P3 | 无重复标题、含关键词 | [~] |
-| T4.2 | 关键词矩阵落位（核心/地域/产品/资质/问题型） | P3 | 各类关键词均有落点 | [ ] |
-| T4.3 | Organization + WebSite Schema（首页） | T3.1 | 校验通过 | [ ] |
-| T4.4 | BreadcrumbList Schema（全站） | P3 | 与可见面包屑一致 | [ ] |
-| T4.5 | Product Schema（二级分类页 + 型号详情） | T3.3/T3.4 | 分类页与型号页均通过 | [ ] |
-| T4.6 | ItemList Schema（列表/分类） | P3 | 列表页 Schema 通过 | [ ] |
-| T4.7 | TechArticle + FAQPage Schema（支持） | T3.10 | 校验通过 | [ ] |
-| T4.8 | NewsArticle/Article Schema（含 publisher 等） | T3.13 | 校验通过 | [ ] |
-| T4.9 | FAQPage Schema（关于/方案/分类/型号/支持） | P3 | 与可见问答一致 | [ ] |
-| T4.10 | 内链网络（分类↔型号↔BOM↔文章↔新闻↔作者/标签） | P3 | 主题簇连通、无孤立页 | [ ] |
-| T4.11 | 图片 alt 全覆盖（含关键词） | P3 | 每个 `<img>` 非空 alt | [ ] |
-| T4.12 | 生成 sitemap.xml / robots.txt / llms.txt | P3 | sitemap 覆盖全站、robots 指向 | [ ] |
-| T4.13 | 空链/死链/锚点清零 | T3/T4.10 | 校验脚本 0 命中 | [ ] |
-| T4.14 | Schema 与可见内容一致性校验 | T4.3–T4.9 | 0 不一致 | [ ] |
+| T4.1 | 每页唯一 title/description/canonical/OG/Twitter | P3 | 无重复标题、含关键词 | [x] |
+| T4.2 | 关键词矩阵落位（核心/地域/产品/资质/问题型） | P3 | 各类关键词均有落点 | [x] |
+| T4.3 | Organization + WebSite Schema（首页） | T3.1 | 校验通过 | [x] |
+| T4.4 | BreadcrumbList Schema（全站） | P3 | 与可见面包屑一致 | [x] |
+| T4.5 | Product Schema（二级分类页 + 型号详情） | T3.3/T3.4 | 分类页与型号页均通过 | [x] |
+| T4.6 | ItemList Schema（列表/分类） | P3 | 列表页 Schema 通过 | [x] |
+| T4.7 | TechArticle + FAQPage Schema（支持） | T3.10 | 校验通过 | [x] |
+| T4.8 | NewsArticle/Article Schema（含 publisher 等） | T3.13 | 校验通过 | [x] |
+| T4.9 | FAQPage Schema（关于/方案/分类/型号/支持） | P3 | 与可见问答一致 | [x] |
+| T4.10 | 内链网络（分类↔型号↔BOM↔文章↔新闻↔作者/标签） | P3 | 主题簇连通、无孤立页 | [x] |
+| T4.11 | 图片 alt 全覆盖（含关键词） | P3 | 每个 `<img>` 非空 alt | [x] |
+| T4.12 | 生成 sitemap.xml / robots.txt / llms.txt | P3 | sitemap 覆盖全站、robots 指向 | [x] |
+| T4.13 | 空链/死链/锚点清零 | T3/T4.10 | 校验脚本 0 命中 | [x] |
+| T4.14 | Schema 与可见内容一致性校验 | T4.3–T4.9 | 0 不一致 | [x] |
 
 ---
 
@@ -140,13 +140,13 @@
 
 | ID | 执行动作 | 依赖 | 完成标准 | 状态 |
 |---|---|---|---|---|
-| T5.1 | 每模块完成即审查+测试并记录 | 各模块 | 每单元有审查+测试记录，失败已复测 | [ ] |
-| T5.2 | `requesting-code-review` 发起审查 | T5.1 | 有审查记录 | [ ] |
-| T5.3 | `receiving-code-review` 处理反馈 | T5.2 | 反馈全部处理或记录理由 | [ ] |
-| T5.4 | 高风险单元预审（脚本/部署/Schema） | T5.2 | 预审通过 | [ ] |
-| T5.5 | `systematic-debugging` 处理 bug | 任意 | 根因定位+修复+回归通过 | [ ] |
-| T5.6 | 阶段四整体审查（Codex 可用则复检，否则按复核清单） | T5.2 | Approved / Issues 闭环 | [ ] |
-| T5.7 | 执行纪律核查（一次一 todo/不跳过/不提前/scope） | 全程 | 无违规记录 | [ ] |
+| T5.1 | 每模块完成即审查+测试并记录 | 各模块 | 每单元有审查+测试记录，失败已复测 | [x] |
+| T5.2 | `requesting-code-review` 发起审查 | T5.1 | 有审查记录 | [x] |
+| T5.3 | `receiving-code-review` 处理反馈 | T5.2 | 反馈全部处理或记录理由 | [x] |
+| T5.4 | 高风险单元预审（脚本/部署/Schema） | T5.2 | 预审通过 | [x] |
+| T5.5 | `systematic-debugging` 处理 bug | 任意 | 根因定位+修复+回归通过 | [x] |
+| T5.6 | 阶段四整体审查（Codex 可用则复检，否则按复核清单） | T5.2 | Approved / Issues 闭环 | [x] |
+| T5.7 | 执行纪律核查（一次一 todo/不跳过/不提前/scope） | 全程 | 无违规记录 | [x] |
 
 ---
 
@@ -154,16 +154,16 @@
 
 | ID | 执行动作 | 依赖 | 完成标准 | 状态 |
 |---|---|---|---|---|
-| T6.1 | 集成测试：导航/页脚/面包屑一致性 | P1–P4 | 全站一致 | [ ] |
-| T6.2 | 集成测试：内链/空链/锚点 | T4.13 | 0 空链 | [ ] |
-| T6.3 | Schema 校验（各页） | T4.14 | 0 错误 | [ ] |
-| T6.4 | 响应式测试 375/768/1024/1440 | P3 | 无横滚、布局正常 | [ ] |
-| T6.5 | 可访问性检查（对比度/键盘/focus） | P3 | AA 达标 | [ ] |
-| T6.6 | Playwright 打开全部页面核对 | T6.1–T6.5 | 全页可打开、无报错 | [ ] |
-| T6.7 | `check_list1.md` 逐项核验 | T6.6 | 全项通过 | [ ] |
-| T6.8 | `check_list2.md` 逐项核验 | T6.6 | 全项通过 | [ ] |
-| T6.9 | 性能/Lighthouse 核查 | P3 | 移动性能 ≥85（目标） | [ ] |
-| T6.10 | `verification-before-completion` 全量验证 | T6.1–T6.9 | 无遗漏 | [ ] |
+| T6.1 | 集成测试：导航/页脚/面包屑一致性 | P1–P4 | 全站一致 | [x] |
+| T6.2 | 集成测试：内链/空链/锚点 | T4.13 | 0 空链 | [x] |
+| T6.3 | Schema 校验（各页） | T4.14 | 0 错误 | [x] |
+| T6.4 | 响应式测试 375/768/1024/1440 | P3 | 无横滚、布局正常 | [x] |
+| T6.5 | 可访问性检查（对比度/键盘/focus） | P3 | AA 达标 | [x] |
+| T6.6 | Playwright 打开全部页面核对 | T6.1–T6.5 | 全页可打开、无报错 | [x] |
+| T6.7 | `check_list1.md` 逐项核验 | T6.6 | 全项通过 | [x] |
+| T6.8 | `check_list2.md` 逐项核验 | T6.6 | 全项通过 | [x] |
+| T6.9 | 性能/Lighthouse 核查 | P3 | 移动性能 ≥85（目标） | [x] |
+| T6.10 | `verification-before-completion` 全量验证 | T6.1–T6.9 | 无遗漏 | [x] |
 
 ---
 
@@ -171,11 +171,11 @@
 
 | ID | 执行动作 | 依赖 | 完成标准 | 状态 |
 |---|---|---|---|---|
-| T7.1 | 提交源码到本地 git | T6.10 | 工作区干净、commit 完成 | [ ] |
-| T7.2 | 创建 GitHub 仓库 `infineon` 并推送 | T7.1 | 远程仓库可访问 | [ ] |
-| T7.3 | 创建 Cloudflare Pages 项目并部署 | T7.2 | 部署成功 | [ ] |
-| T7.4 | 验证 `*.pages.dev` 首页 + 3 详情页 | T7.3 | 4 个 URL 返回 200 | [ ] |
-| T7.5 | `finishing-a-development-branch` 收尾 | T7.4 | 无未提交/未跑测试 | [ ] |
+| T7.1 | 提交源码到本地 git | T6.10 | 工作区干净、commit 完成 | [x] |
+| T7.2 | 创建 GitHub 仓库 `infineon` 并推送 | T7.1 | 远程仓库可访问 | [x] |
+| T7.3 | 创建 Cloudflare Pages 项目并部署 | T7.2 | 部署成功 | [x] |
+| T7.4 | 验证 `*.pages.dev` 首页 + 3 详情页 | T7.3 | 4 个 URL 返回 200 | [x] |
+| T7.5 | `finishing-a-development-branch` 收尾 | T7.4 | 无未提交/未跑测试 | [x] |
 
 ---
 
@@ -183,11 +183,11 @@
 
 | ID | 执行动作 | 依赖 | 完成标准 | 状态 |
 |---|---|---|---|---|
-| T8.1 | 编写 `brand-creation-guide.md` | T7.5 | 入口/规则/流程/边界齐全 | [ ] |
-| T8.2 | 编写 `brand-mistakes.md` | T7.5 | 模板与已知风险齐全 | [ ] |
-| T8.3 | 编写 `brand-checklist.md` | T7.5 | 可勾选、覆盖关键项 | [ ] |
-| T8.4 | `check_list1.md` / `check_list2.md` 终版 | T6.7/T6.8 | 与模板/JSON 对齐 | [ ] |
-| T8.5 | 虚拟品牌复现验证（复制模板+改 JSON） | T8.1–T8.4 | 能生成第二品牌站且无报错 | [ ] |
+| T8.1 | 编写 `brand-creation-guide.md` | T7.5 | 入口/规则/流程/边界齐全 | [x] |
+| T8.2 | 编写 `brand-mistakes.md` | T7.5 | 模板与已知风险齐全 | [x] |
+| T8.3 | 编写 `brand-checklist.md` | T7.5 | 可勾选、覆盖关键项 | [x] |
+| T8.4 | `check_list1.md` / `check_list2.md` 终版 | T6.7/T6.8 | 与模板/JSON 对齐 | [x] |
+| T8.5 | 虚拟品牌复现验证（复制模板+改 JSON） | T8.1–T8.4 | 能生成第二品牌站且无报错 | [x] |
 
 ---
 
@@ -195,8 +195,8 @@
 
 | ID | 执行动作 | 依赖 | 完成标准 | 状态 |
 |---|---|---|---|---|
-| T9.1 | 同步文档状态（PRD/design/plan/todo/checklists） | T8 | 状态一致、无过期描述 | [ ] |
-| T9.2 | 记录遗留项与后续优化（不扩大 scope） | T9.1 | 遗留清单存在 | [ ] |
+| T9.1 | 同步文档状态（PRD/design/plan/todo/checklists） | T8 | 状态一致、无过期描述 | [x] |
+| T9.2 | 记录遗留项与后续优化（不扩大 scope） | T9.1 | 遗留清单存在 | [x] |
 
 ---
 
