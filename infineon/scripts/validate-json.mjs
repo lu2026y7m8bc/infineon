@@ -4,6 +4,7 @@
  * 用法：node scripts/validate-json.mjs
  */
 import { readFile } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
@@ -25,14 +26,22 @@ function checkSeo(where, seo) {
   if (!seo || !seo.title || !seo.description || !seo.canonical) fail(`${where} seo missing title/description/canonical`);
 }
 
-function checkFaq(where, faq, min, max) {
+function checkFaq(where, faq, min, max, minLen = 250, maxLen = 500) {
   if (!Array.isArray(faq)) return fail(`${where} faq not array`);
   if (faq.length < min || faq.length > max) fail(`${where} faq count=${faq.length}, expected ${min}-${max}`);
   faq.forEach((f, i) => {
     if (!f.question) fail(`${where} faq[${i}] missing question`);
-    if (!Array.isArray(f.question === undefined ? [] : f.answer) || f.answer.length < 2) fail(`${where} faq[${i}] answer must be >=2 paragraphs`);
+    if (!Array.isArray(f.answer) || f.answer.length < 2) fail(`${where} faq[${i}] answer must be >=2 paragraphs`);
     if (!f.decisionGuide) fail(`${where} faq[${i}] missing decisionGuide`);
+    const len = (f.answer || []).join('').length;
+    if (len < minLen || len > maxLen) fail(`${where} faq[${i}] answer length=${len}, expected ${minLen}-${maxLen}`);
   });
+}
+
+function checkImage(where, p) {
+  if (!p) return fail(`${where} missing image path`);
+  const rel = String(p).replace(/^\//, '');
+  if (!existsSync(path.join(dataDir, '..', rel))) fail(`${where} image not found: ${p}`);
 }
 
 function checkCommon(name, data) {
@@ -52,7 +61,7 @@ function checkHome(data) {
   if (c.solutions && c.solutions.length !== 4) fail('home solutions !=4');
   if (c.articles && c.articles.length < 3) fail('home articles <3');
   if (c.news && c.news.length < 3) fail('home news <3');
-  checkFaq('home', data.page.faq, 3, 5);
+  checkFaq('home', data.page.faq, 3, 5, 250, 450);
 }
 
 function checkProducts(data) {
@@ -61,6 +70,7 @@ function checkProducts(data) {
   let models = 0;
   let deep = 0;
   let standard = 0;
+  const seenModels = new Set();
   for (const cat of cats) {
     if (cat.description.length < 200 || cat.description.length > 300) fail(`${cat.slug} description length=${cat.description.length}, expected 200-300`);
     if (!cat.applications || !cat.applications.length) fail(`${cat.slug} missing applications`);
@@ -68,7 +78,7 @@ function checkProducts(data) {
     if (!cat.guideLink || !cat.guideLink.url) fail(`${cat.slug} missing guideLink`);
     if (!cat.faeReview || !cat.faeReview.text) fail(`${cat.slug} missing faeReview`);
     if (!cat.models || cat.models.length !== 6) fail(`${cat.slug} models=${cat.models ? cat.models.length : 0}, expected 6`);
-    checkFaq(`category ${cat.slug}`, cat.faq, 5, 12);
+    checkFaq(`category ${cat.slug}`, cat.faq, 5, 12, 300, 500);
     for (const m of cat.models || []) {
       models += 1;
       if (m.depth === 'deep') deep += 1;
@@ -77,7 +87,10 @@ function checkProducts(data) {
       if (m.description.length < min) fail(`${cat.slug}/${m.model} description=${m.description.length}, expected >=${min}`);
       if (!m.params || !Object.keys(m.params).length) fail(`${cat.slug}/${m.model} missing params`);
       if (!m.package || !m.stock) fail(`${cat.slug}/${m.model} missing package/stock`);
-      checkFaq(`model ${m.model}`, m.faq, m.depth === 'deep' ? 5 : 3, m.depth === 'deep' ? 8 : 5);
+      if (seenModels.has(m.model)) fail(`duplicate model ${m.model}`);
+      seenModels.add(m.model);
+      (m.images || []).forEach((img) => checkImage(`${cat.slug}/${m.model}`, img));
+      checkFaq(`model ${m.model}`, m.faq, m.depth === 'deep' ? 5 : 3, m.depth === 'deep' ? 8 : 5, 250, 450);
     }
   }
   if (models !== 24) fail(`products models=${models}, expected 24`);
@@ -93,7 +106,7 @@ function checkSolutions(data) {
     if (!s.blockDiagram || !s.blockDiagram.src || !s.blockDiagram.alt) fail(`${s.slug} missing blockDiagram`);
     if (!s.techStrength || !s.techStrength.length) fail(`${s.slug} missing techStrength`);
     if (!s.bom || !s.bom.length) fail(`${s.slug} missing bom`);
-    checkFaq(`solution ${s.slug}`, s.faq, 3, 6);
+    checkFaq(`solution ${s.slug}`, s.faq, 3, 6, 250, 450);
   }
 }
 
@@ -105,11 +118,18 @@ function checkSupport(data) {
   const slugs = new Set((data.articles || []).map((a) => a.slug));
   const authors = new Set((data.authors || []).map((a) => a.id));
   const cats = new Set((data.categories || []).map((c) => c.slug));
+  const tagSet = new Set((data.tags || []).map((t) => t.slug));
+  const seen = new Set();
   for (const a of data.articles || []) {
+    if (seen.has(a.slug)) fail(`duplicate article slug ${a.slug}`);
+    seen.add(a.slug);
     if (a.content.join('').length < 800) fail(`${a.slug} content=${a.content.join('').length}, expected >=800`);
     if (!cats.has(a.category)) fail(`${a.slug} bad category ${a.category}`);
     if (!authors.has(a.author)) fail(`${a.slug} bad author ${a.author}`);
-    checkFaq(`article ${a.slug}`, a.faq, 4, 8);
+    (a.tags || []).forEach((t) => {
+      if (!tagSet.has(t)) fail(`${a.slug} bad tag ${t}`);
+    });
+    checkFaq(`article ${a.slug}`, a.faq, 4, 8, 250, 450);
     (a.related || []).forEach((r) => {
       if (!slugs.has(r)) fail(`${a.slug} related missing ${r}`);
     });
@@ -122,7 +142,10 @@ function checkNews(data) {
   if (list.filter((a) => a.category === 'company').length !== 2) fail('news company !=2');
   if (list.filter((a) => a.category === 'industry').length !== 2) fail('news industry !=2');
   const slugs = new Set(list.map((a) => a.slug));
+  const seen = new Set();
   for (const a of list) {
+    if (seen.has(a.slug)) fail(`duplicate news slug ${a.slug}`);
+    seen.add(a.slug);
     if (a.content.join('').length < 800) fail(`${a.slug} content=${a.content.join('').length}, expected >=800`);
     if (a.category === 'industry' && (!a.sources || !a.sources.length)) fail(`${a.slug} industry missing sources`);
     (a.related || []).forEach((r) => {
@@ -137,10 +160,11 @@ function checkAbout(data) {
   if (!c.team || !c.team.stats || c.team.stats.length < 3) fail('about team stats <3');
   if (!c.milestones || c.milestones.length < 3) fail('about milestones <3');
   if (!c.customsDocs || c.customsDocs.length !== 4) fail('about customsDocs !=4');
+  (c.customsDocs || []).forEach((d) => checkImage('customs', d.image));
   if (!c.advantages || c.advantages.length < 4) fail('about advantages <4');
   if (!c.cases || c.cases.length < 3) fail('about cases <3');
   if (!c.contact || !c.contact.qq) fail('about contact.qq missing');
-  checkFaq('about', data.page.faq, 4, 8);
+  checkFaq('about', data.page.faq, 4, 8, 250, 450);
 }
 
 async function main() {

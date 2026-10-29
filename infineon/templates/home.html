@@ -11,7 +11,10 @@
   <meta property="og:description" content="{{OG_DESCRIPTION}}">
   <meta property="og:url" content="{{OG_URL}}">
   <meta property="og:type" content="website">
-  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <meta property="og:image" content="{{OG_IMAGE}}">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261030">
   {{SCHEMA}}
 </head>
 <body>
@@ -24,14 +27,20 @@
           <h1>{{HERO_TITLE}}</h1>
           <p>{{HERO_SUBTITLE}}</p>
           <div class="hero-actions">{{HERO_ACTIONS}}</div>
-          <div class="hero-trust">{{HERO_TRUST}}</div>
         </div>
         <div class="hero-art" aria-hidden="true">{{HERO_ART}}</div>
       </div>
     </section>
 
+    <section class="section trust-strip">
+      <div class="container">
+        <div class="trust-list">{{HERO_TRUST}}</div>
+      </div>
+    </section>
+
     <section class="section">
       <div class="container">
+        <h2 class="section-title">核心优势</h2>
         <div class="grid grid-4">{{ADVANTAGES}}</div>
       </div>
     </section>
@@ -92,6 +101,6 @@
     </section>
   </main>
   {{FOOTER}}
-  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/main.js?v=20261030"></script>
 </body>
 </html>

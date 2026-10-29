@@ -3,3 +3,8 @@ node_modules/
 .DS_Store
 Thumbs.db
 *.log
+.playwright-mcp/
+link-report.txt
+infineon/link-report.txt
+infineon/dist/
+infineon/data/.backup/

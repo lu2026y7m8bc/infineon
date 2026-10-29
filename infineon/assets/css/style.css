@@ -1684,3 +1684,82 @@ body.nav-open {
   .grid-4 { grid-template-columns: 1fr; }
 }
 
+
+/* ==========================================================================
+   阶段四审查修复（Critical / Important / Minor）
+   ========================================================================== */
+
+.layout-sidebar > *,
+.layout-content-sidebar > * { min-width: 0; }
+
+.table-wrap { max-width: 100%; }
+
+.trust-strip {
+  padding: var(--space-6) 0;
+  background: var(--color-neutral-50);
+  border-top: 1px solid var(--color-neutral-200);
+  border-bottom: 1px solid var(--color-neutral-200);
+}
+.trust-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  justify-content: center;
+}
+.trust-list span {
+  padding: 8px 16px;
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-pill);
+  background: var(--color-white);
+  color: var(--color-neutral-800);
+  font-size: 14px;
+}
+
+.model-thumbs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+}
+.model-thumb {
+  padding: 4px;
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-sm);
+  background: var(--color-white);
+  cursor: pointer;
+}
+.model-thumb.is-active { border-color: var(--color-primary); }
+.model-thumb img,
+.model-thumb svg { width: 100%; height: 64px; object-fit: contain; }
+
+.form-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: var(--space-3);
+  color: var(--color-neutral-600);
+  font-size: 14px;
+}
+.form-check input { margin-top: 3px; }
+
+/* 对比度：橙色 CTA 使用深色文字，满足 AA */
+.btn-primary,
+.header-cta { color: #212529; }
+.btn-primary:hover,
+.header-cta:hover { color: #212529; }
+
+.badge-stock-in { color: #0f6b3a; background: #e6f4ec; }
+.badge-stock-inquiry { color: #8a4b00; background: #fdebd8; }
+
+/* 整卡可点击 */
+.card { position: relative; }
+.card-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.card-link { position: relative; z-index: 2; }
+
+/* 无 JS 时移动导航可见（移动端） */
+.nav-toggle { touch-action: manipulation; }

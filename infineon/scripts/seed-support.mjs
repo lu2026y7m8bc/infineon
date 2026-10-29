@@ -16,8 +16,8 @@ const categories = [
 ];
 
 const authors = [
-  { id: 'zhang-gong', name: '张工', avatar: 'assets/img/author-zhang.svg', expertise: 'IGBT / MOSFET / 功率器件', experience: '15 年功率器件 FAE 经验', bio: '长期支持电机驱动、光伏储能与电源客户，擅长驱动、散热与替代料验证。' },
-  { id: 'li-gong', name: '李工', avatar: 'assets/img/author-li.svg', expertise: 'MCU / 嵌入式 / 传感器', experience: '12 年嵌入式与 MCU FAE 经验', bio: '专注 AURIX™、XMC™ 与传感器集成，熟悉电机控制与工业通信。' }
+  { id: 'zhang-gong', name: '张工', avatar: 'assets/img/author-zhang.svg', expertise: 'IGBT / MOSFET / 功率器件', experience: '多年功率器件 FAE 经验', note: '为保护隐私，使用化名。', bio: '长期支持电机驱动、光伏储能与电源客户，擅长驱动、散热与替代料验证。' },
+  { id: 'li-gong', name: '李工', avatar: 'assets/img/author-li.svg', expertise: 'MCU / 嵌入式 / 传感器', experience: '多年嵌入式与 MCU FAE 经验', note: '为保护隐私，使用化名。', bio: '专注 AURIX™、XMC™ 与传感器集成，熟悉电机控制与工业通信。' }
 ];
 
 const tags = [

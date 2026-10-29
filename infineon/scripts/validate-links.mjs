@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * validate-links.mjs — 内链 / 空链 / 锚点校验（骨架 T0.5，完整实现见 T4.13）
+ * validate-links.mjs — 内链 / 空链 / 锚点 / 不安全协议校验
  * 用法：node scripts/validate-links.mjs
  */
 import { readdir, readFile, stat } from 'node:fs/promises';
@@ -39,7 +39,12 @@ function extractLinks(html) {
 }
 
 function isExternal(link) {
-  return /^(https?:)?\/\//.test(link) || /^(mailto:|tel:|javascript:|data:)/.test(link);
+  return /^(https?:)?\/\//.test(link) || /^(mailto:|tel:)/.test(link);
+}
+
+function anchorExists(html, id) {
+  const escaped = String(id).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return new RegExp(`(?:id|name)=["']${escaped}["']`).test(html);
 }
 
 async function exists(target) {
@@ -57,22 +62,41 @@ async function main() {
   for (const file of files) {
     const html = await readFile(file, 'utf8');
     for (const link of extractLinks(html)) {
-      if (!link || link.startsWith('#')) {
-        if (link === '#') problems.push({ file, link, reason: 'empty hash link' });
+      if (!link) continue;
+
+      if (/^javascript:/i.test(link) || /^data:/i.test(link)) {
+        problems.push({ file, link, reason: 'unsafe protocol' });
+        continue;
+      }
+      if (link === '#') {
+        problems.push({ file, link, reason: 'empty hash link' });
+        continue;
+      }
+      if (link.startsWith('#')) {
+        if (!anchorExists(html, link.slice(1))) problems.push({ file, link, reason: 'missing same-page anchor' });
         continue;
       }
       if (isExternal(link)) continue;
-      const clean = link.split('#')[0].split('?')[0];
+
+      const [pathPart, hash] = link.split('#');
+      const clean = pathPart.split('?')[0];
       if (!clean) continue;
       const target = clean.startsWith('/')
         ? path.join(root, clean)
         : path.resolve(path.dirname(file), clean);
-      if (!(await exists(target))) problems.push({ file, link, reason: 'missing target' });
+      if (!(await exists(target))) {
+        problems.push({ file, link, reason: 'missing target' });
+        continue;
+      }
+      if (hash) {
+        const targetHtml = await readFile(target, 'utf8');
+        if (!anchorExists(targetHtml, hash)) problems.push({ file, link, reason: 'missing target anchor' });
+      }
     }
   }
   console.log(`[validate-links] scanned ${files.length} html files`);
   if (!problems.length) {
-    console.log('[validate-links] OK: no empty or broken links');
+    console.log('[validate-links] OK: no empty, broken, unsafe or anchor-missing links');
     return;
   }
   for (const p of problems) console.log(`[validate-links] ${p.reason}: ${p.link} in ${p.file}`);

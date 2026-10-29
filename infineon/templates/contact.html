@@ -11,7 +11,10 @@
   <meta property="og:description" content="{{OG_DESCRIPTION}}">
   <meta property="og:url" content="{{OG_URL}}">
   <meta property="og:type" content="website">
-  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <meta property="og:image" content="{{OG_IMAGE}}">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261030">
   {{SCHEMA}}
 </head>
 <body>
@@ -27,6 +30,7 @@
 
       <div class="layout-content-sidebar">
         <div>
+          <h2 class="section-title">办事处</h2>
           <div class="grid grid-2">{{OFFICES}}</div>
 
           <section class="section">
@@ -48,6 +52,7 @@
               <h2 class="sidebar-title">QQ</h2>
               <p class="footer-qq"><strong>{{QQ}}</strong></p>
               <p>添加 QQ 获取报价与技术咨询。</p>
+              {{QQ_ACTION}}
             </div>
           </div>
         </aside>
@@ -56,6 +61,6 @@
     {{DETAIL_CTA}}
   </main>
   {{FOOTER}}
-  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/main.js?v=20261030"></script>
 </body>
 </html>
