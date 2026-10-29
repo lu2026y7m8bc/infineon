@@ -1,0 +1,280 @@
+#!/usr/bin/env node
+/** seed-solutions.mjs — 生成 data/solutions.json（4 个行业方案） */
+import { writeFile } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const outFile = path.resolve(__dirname, '..', 'data', 'solutions.json');
+const brand = { name: '英飞凌', nameEn: 'Infineon', company: '力通', companyEn: 'litong' };
+
+const solutions = [
+  {
+    slug: 'xev',
+    title: '新能源汽车三电系统解决方案',
+    summary: '面向电驱逆变、OBC、DC-DC 与 BMS 的英飞凌 IGBT/SiC、AURIX™ MCU 与电流/角度传感器组合，兼顾效率、安全与供货稳定。',
+    industry: '新能源汽车',
+    tags: ['IGBT', 'SiC', 'AURIX', '电流传感器'],
+    heroImage: 'assets/img/solution-xev.svg',
+    blockDiagram: {
+      src: 'assets/img/block-xev.svg',
+      alt: '新能源汽车三电系统方案框图：动力电池经 OBC/DC-DC 与电驱逆变连接电机，BMS 与整车控制器通过 CAN 通信，电流与角度传感器反馈给控制器'
+    },
+    overview: [
+      '新能源汽车三电系统由电池、电驱与电控构成，核心挑战是在有限体积与成本下同时满足效率、可靠性、功能安全与 EMC。电驱逆变需要在高频开关下控制损耗与温升，OBC 与 DC-DC 要在宽输入范围内保持高效率，BMS 则要兼顾采样精度与隔离安全。英飞凌在 IGBT/SiC、MCU、驱动与传感器上都有完整组合，适合做系统级选型而不是单点替换。',
+      '电驱逆变通常采用三相全桥拓扑，功率器件可选择 IGBT 模块或 SiC 模块。对 400V 平台，1200V IGBT 模块在成本与成熟度上更有优势；对 800V 平台或追求更高频率与效率的场景，可评估 SiC。选型时要结合母线电压、峰值电流、开关频率、短路能力与散热条件，预留足够的电压与电流裕量，并通过样机波形与温升验证。',
+      '控制与传感部分，AURIX™ TC3xx 适合域控制与电机控制，具备多核、实时性与安全能力；转子位置可用 GMR/TMR 角度传感器，电流检测可用无磁芯电流传感器。传感链路要与控制环路带宽匹配，注意气隙、磁铁、母排布局与温漂，避免机械安装误差被误判为芯片问题。',
+      'OBC 与 DC-DC 侧，PFC 与 LLC 拓扑对器件的要求不同：PFC 更关注导通损耗与耐压，LLC 更关注开关损耗与寄生参数。CoolMOS™ 与 OptiMOS™ 可覆盖不同功率段，选型时要同时看 RDS(on)、Qg、封装热阻与驱动电压，并在样机上测效率曲线与 EMI。',
+      '量产阶段还要考虑供货与合规：功率模块与 MCU 的交期、批次追溯、报关单与功能安全文件都要提前确认。力通可提供英飞凌代理渠道、现货/询价支持、替代料建议与 FAE 热设计复核，帮助把选型、样品与量产备货串起来。'
+    ],
+    advantages: [
+      { title: '系统级组合', desc: '功率、控制、驱动与传感来自同一体系，减少兼容风险。' },
+      { title: '效率与安全并重', desc: '兼顾开关损耗、热设计与功能安全需求。' },
+      { title: '供货可控', desc: '主流型号常备现货，紧缺批次给出替代与交期。' },
+      { title: '本地 FAE', desc: '提供选型、替代料与热设计复核。' }
+    ],
+    techStrength: [
+      { title: '电驱逆变经验', desc: '覆盖 IGBT/SiC 模块选型、驱动与散热评估。' },
+      { title: '控制与传感', desc: 'AURIX™ MCU 与角度/电流传感器的匹配经验。' },
+      { title: '量产支持', desc: '样品、批次追溯、报关与备货协同。' }
+    ],
+    bom: [
+      { model: 'FF450R12ME4', role: '电驱逆变主功率模块', keyParams: '1200V/450A', url: '/products/igbt/ff450r12me4.html' },
+      { model: 'TC397', role: '域控制/电机控制 MCU', keyParams: '300MHz/16MB Flash', url: '/products/mcu/tc397.html' },
+      { model: 'TLE5012B', role: '转子位置角度传感器', keyParams: '15bit GMR', url: '/products/sensors/tle5012b.html' },
+      { model: 'TLI4971', role: '相电流检测', keyParams: '±50A', url: '/products/sensors/tli4971.html' },
+      { model: 'IPP60R099P7', role: 'OBC PFC 开关', keyParams: '600V/38A', url: '/products/mosfet/ipp60r099p7.html' }
+    ],
+    scenarios: ['电驱逆变', '车载充电机 OBC', 'DC-DC 转换', '电池管理 BMS'],
+    integration: ['先确定母线电压与峰值电流，再反推器件耐压与并联方案。', '驱动电阻与保护阈值需结合开关波形迭代。', '传感链路要与控制环路带宽匹配，并做温漂校准。'],
+    faq: [
+      { question: '400V 与 800V 平台如何选择功率器件？', answer: ['400V 平台可优先评估 1200V IGBT 模块，成本与成熟度更友好；800V 平台可评估 SiC 以降低损耗并提升频率。', '最终要看效率目标、散热条件、成本与供货，建议用样机对比开关损耗与温升。'], decisionGuide: '提交平台电压与功率目标，获取器件对比与定制方案。' },
+      { question: '电驱逆变如何做热设计复核？', answer: ['先估算模块损耗，再结合结到壳热阻、散热器与冷却条件计算结温，并留出环境与老化裕量。', '样机阶段应测开关波形、壳温与冷却液温度，避免只按手册典型值设计。'], decisionGuide: '联系 FAE 获取热设计复核清单。' },
+      { question: '角度传感器安装有哪些注意点？', answer: ['要保证磁铁与芯片同轴、气隙稳定，并控制磁铁尺寸与温度特性。', '安装公差与结构应力会直接影响角度误差，建议在结构设计早期引入规格书。'], decisionGuide: '提交机械结构，获取传感器安装建议。' },
+      { question: '如何获取三电系统 BOM 与报价？', answer: ['可提供整车平台电压、功率等级与目标车型，我们会给出器件组合与替代建议。', '确认 BOM 后可分批报价，并协调样品与量产备货。'], decisionGuide: '联系我们获取完整 BOM 与定制方案。' }
+    ],
+    related: [
+      { title: 'IGBT 驱动电路设计与栅极电阻选型实战', url: '/support/app-notes/igbt-gate-driver-design.html' },
+      { title: '光伏与储能逆变方案', url: '/solutions/pv-storage/' },
+      { title: '英飞凌 AURIX™ TC4x 发布解读', url: '/news/infineon-tc4x-launch.html' }
+    ]
+  },
+  {
+    slug: 'pv-storage',
+    title: '光伏与储能逆变解决方案',
+    summary: '面向组串逆变器与储能 PCS 的英飞凌 IGBT/模块、MCU 与电流传感器组合，关注效率、并网质量与长期可靠性。',
+    industry: '光伏储能',
+    tags: ['IGBT', '储能 PCS', 'MPPT', '电流传感器'],
+    heroImage: 'assets/img/solution-pv.svg',
+    blockDiagram: {
+      src: 'assets/img/block-pv.svg',
+      alt: '光伏与储能逆变方案框图：光伏组串经 MPPT 与 DC-AC 逆变并入电网，储能电池经双向 PCS 与电网/负载交互，控制器与电流传感器构成闭环'
+    },
+    overview: [
+      '光伏与储能系统的核心是把不稳定的直流输入高效、可靠地转换为并网或离网交流，并在储能场景下支持双向流动。组串逆变关注 MPPT 效率、并网电流质量与长期户外可靠性；储能 PCS 还要处理电池电压范围宽、充放电切换与并网/离网切换。器件选型必须同时考虑效率、热设计、保护与生命周期。',
+      '主功率拓扑通常包括 Boost MPPT、三相全桥逆变与滤波。IGBT 模块适合中大功率与成熟供应链，SiC 可在高频与高效率场景降低损耗。选型时要结合直流母线电压、额定/峰值电流、开关频率与散热方式，预留电压与电流裕量，并评估短路与过载能力。',
+      '控制侧可用 XMC™ 或 AURIX™ 系列实现 MPPT、锁相环、电流环与保护逻辑。电流检测建议使用无磁芯电流传感器或霍尔方案，注意母排布局、隔离与带宽；电压/温度采样要做好滤波与校准，避免并网电流畸变。',
+      '户外应用要重点关注温度循环、湿度、盐雾与雷击浪涌。功率模块的结温裕量、散热器设计、驱动保护与 PCB 爬电距离都会影响长期可靠性。建议在样机阶段做满载温升、低载效率、并网谐波与浪涌测试，再冻结器件与散热方案。',
+      '量产阶段要确认模块与 MCU 的供货周期、批次一致性与认证文件。力通可提供英飞凌代理渠道、现货/询价、替代料建议与 FAE 支持，帮助在效率、成本与交期之间取得平衡。'
+    ],
+    advantages: [
+      { title: '高效拓扑组合', desc: '覆盖 MPPT、逆变与双向 PCS 的器件选择。' },
+      { title: '并网质量', desc: '控制与传感链路支持电流环与锁相设计。' },
+      { title: '户外可靠性', desc: '关注温循、浪涌与爬电距离。' },
+      { title: '供货支持', desc: '主流模块与 MCU 常备现货。' }
+    ],
+    techStrength: [
+      { title: 'MPPT 与并网', desc: 'Boost/逆变拓扑与电流采样经验。' },
+      { title: '热与保护', desc: '模块散热、短路与过载保护评估。' },
+      { title: '认证协同', desc: '配合并网与安规测试的资料支持。' }
+    ],
+    bom: [
+      { model: 'FF300R12ME4', role: '三相逆变主功率模块', keyParams: '1200V/300A', url: '/products/igbt/ff300r12me4.html' },
+      { model: 'FF600R12ME4', role: '大功率 PCS 模块', keyParams: '1200V/600A', url: '/products/igbt/ff600r12me4.html' },
+      { model: 'XMC4800', role: 'MPPT/逆变控制 MCU', keyParams: '144MHz/2MB Flash', url: '/products/mcu/xmc4800.html' },
+      { model: 'TLI4971', role: '并网电流检测', keyParams: '±50A', url: '/products/sensors/tli4971.html' },
+      { model: 'IPA60R280P7', role: '辅助电源开关', keyParams: '600V/14A', url: '/products/mosfet/ipa60r280p7.html' }
+    ],
+    scenarios: ['组串逆变器', '储能 PCS', '离网/并网切换', 'MPPT 优化'],
+    integration: ['先确定直流电压范围与并网制式，再选功率模块。', '电流采样与锁相环要联合调试，保证并网质量。', '户外机型要预留温度与浪涌裕量。'],
+    faq: [
+      { question: '组串逆变与储能 PCS 的器件选型差异？', answer: ['组串逆变以单向 DC-AC 为主，关注 MPPT 效率与并网质量；储能 PCS 需要双向流动，器件与驱动要支持充放电切换。', '储能场景还要考虑电池电压范围宽与环流问题，模块并联与均流设计更关键。'], decisionGuide: '提供功率等级与拓扑，获取器件组合建议。' },
+      { question: '如何提升低载效率？', answer: ['可通过优化开关频率、选择低 Qg/低 Coss 器件、调整驱动电阻与死区来降低低载损耗。', '同时要兼顾轻载时的并网电流质量，建议用效率地图评估全工况。'], decisionGuide: '联系 FAE 获取效率优化清单。' },
+      { question: '户外机型如何做可靠性设计？', answer: ['重点关注温度循环、湿度、盐雾、雷击浪涌与爬电距离，散热器与密封结构要匹配。', '样机阶段建议做满载温升、温循与浪涌测试，再冻结方案。'], decisionGuide: '提交应用环境，获取可靠性检查表。' },
+      { question: '如何获取方案 BOM 与报价？', answer: ['提供直流电压、额定功率、并网制式与目标成本，我们会给出模块/MCU/传感器组合。', '确认后可分批报价并协调样品。'], decisionGuide: '联系我们获取完整定制方案。' }
+    ],
+    related: [
+      { title: 'IGBT 驱动电路设计', url: '/support/app-notes/igbt-gate-driver-design.html' },
+      { title: '工业电机驱动与伺服方案', url: '/solutions/industrial-drive/' },
+      { title: 'IGBT/SiC 市场趋势解读', url: '/news/igbt-sic-market-2026.html' }
+    ]
+  },
+  {
+    slug: 'industrial-drive',
+    title: '工业电机驱动与伺服解决方案',
+    summary: '面向变频器、伺服与 BLDC 驱动的英飞凌 IGBT、XMC™ MCU、角度与电流传感器组合，兼顾动态响应与可靠性。',
+    industry: '工业自动化',
+    tags: ['IGBT', 'BLDC', '伺服', '角度传感器'],
+    heroImage: 'assets/img/solution-drive.svg',
+    blockDiagram: {
+      src: 'assets/img/block-drive.svg',
+      alt: '工业电机驱动方案框图：整流与直流母线经三相逆变驱动电机，XMC 控制器采集电流与角度信号，形成速度/位置闭环'
+    },
+    overview: [
+      '工业电机驱动覆盖变频器、伺服与 BLDC 控制，核心是动态响应、能效与可靠性。变频器强调调速范围与过载能力，伺服强调带宽与定位精度，BLDC 则关注成本与效率。不同场景对开关频率、控制算法与传感精度要求不同，器件选型要围绕控制目标展开。',
+      '主功率通常采用整流 + 直流母线 + 三相逆变。IGBT 模块适合中大功率与快速装配，分立 IGBT/MOSFET 适合中小功率与成本优化。选型时要结合母线电压、额定/峰值电流、开关频率、短路能力与散热，预留足够裕量，并评估死区与驱动电阻对损耗的影响。',
+      '控制侧 XMC™ 系列集成电机控制外设，适合 FOC、SVPWM 与编码器/霍尔接口。角度检测可用 GMR/TMR 传感器或编码器，电流检测可用无磁芯电流传感器。控制环路要与采样带宽匹配，注意 ADC 同步、滤波与校准。',
+      '工业现场要关注 EMC、温度、粉尘与振动。功率回路的寄生电感、驱动保护、散热器与接插件都会影响可靠性。建议在样机阶段做满载温升、低速转矩、过载与 EMC 测试，再冻结器件与布局。',
+      '量产阶段要确认器件供货与替代方案，避免单一料号影响交期。力通可提供英飞凌代理、现货/询价、替代料建议与 FAE 调试支持，帮助缩短导入周期。'
+    ],
+    advantages: [
+      { title: '控制外设集成', desc: 'XMC™ 适合 FOC/SVPWM 与编码器接口。' },
+      { title: '功率覆盖广', desc: '模块与分立器件覆盖不同功率段。' },
+      { title: '传感匹配', desc: '角度与电流传感器形成闭环。' },
+      { title: '本地支持', desc: 'FAE 协助调试与替代验证。' }
+    ],
+    techStrength: [
+      { title: '电机控制', desc: 'FOC、SVPWM 与电流环调试经验。' },
+      { title: '功率与散热', desc: '模块选型、驱动与热设计复核。' },
+      { title: 'EMC 与可靠性', desc: '工业现场 EMC 与保护设计建议。' }
+    ],
+    bom: [
+      { model: 'FF450R12ME4', role: '中大功率逆变模块', keyParams: '1200V/450A', url: '/products/igbt/ff450r12me4.html' },
+      { model: 'XMC4800', role: '电机控制 MCU', keyParams: '144MHz/2MB Flash', url: '/products/mcu/xmc4800.html' },
+      { model: 'TLE5012B', role: '转子角度检测', keyParams: '15bit GMR', url: '/products/sensors/tle5012b.html' },
+      { model: 'TLI4971', role: '相电流检测', keyParams: '±50A', url: '/products/sensors/tli4971.html' },
+      { model: 'IKW40N65H5', role: '辅助/小功率开关', keyParams: '650V/40A', url: '/products/igbt/ikw40n65h5.html' }
+    ],
+    scenarios: ['变频器', '伺服驱动', 'BLDC 电机', '泵/风机控制'],
+    integration: ['先确定调速范围与过载要求，再选功率器件。', '电流采样与 PWM 同步，保证 FOC 控制质量。', '工业现场要预留 EMC 与散热裕量。'],
+    faq: [
+      { question: '变频器与伺服选型差异？', answer: ['变频器更关注调速范围、过载与成本；伺服更关注带宽、定位精度与动态响应。', '伺服通常需要更高采样率与更低延迟，器件与控制环路要一起评估。'], decisionGuide: '提供控制目标与功率等级，获取选型建议。' },
+      { question: 'BLDC 控制如何选择角度传感器？', answer: ['可用霍尔、GMR/TMR 或编码器，取决于精度、成本与安装空间。', '高精度伺服建议用高分辨率角度传感器，并做好气隙与同轴度控制。'], decisionGuide: '提交精度与结构要求，获取传感器方案。' },
+      { question: '如何降低低速转矩脉动？', answer: ['可从电流采样同步、死区补偿、角度校准与控制参数整定入手。', '同时要检查功率回路布局与驱动一致性，避免三相不对称。'], decisionGuide: '联系 FAE 获取调试清单。' },
+      { question: '如何获取驱动方案 BOM？', answer: ['提供功率、调速范围、控制精度与现场环境，我们会给出器件与控制组合。', '确认后可报价并安排样品。'], decisionGuide: '联系我们获取定制方案。' }
+    ],
+    related: [
+      { title: 'MOSFET 过热排查手册', url: '/support/troubleshooting/mosfet-overheat.html' },
+      { title: '新能源汽车三电系统方案', url: '/solutions/xev/' },
+      { title: '如何选择英飞凌 MCU', url: '/support/guides/how-to-choose-infineon-mcu.html' }
+    ]
+  },
+  {
+    slug: 'ev-charging-datacenter',
+    title: '充电桩与数据中心电源解决方案',
+    summary: '面向直流充电模块与数据中心电源的英飞凌 CoolMOS™、IGBT 与 MCU 组合，关注高功率密度、效率与可靠性。',
+    industry: '电源与充电',
+    tags: ['CoolMOS', 'PFC', 'LLC', '充电模块'],
+    heroImage: 'assets/img/solution-power.svg',
+    blockDiagram: {
+      src: 'assets/img/block-power.svg',
+      alt: '充电桩与数据中心电源方案框图：交流输入经 PFC 与 LLC/DC-DC 转换为直流输出，控制器采样电压电流并管理保护与通信'
+    },
+    overview: [
+      '直流充电模块与数据中心电源的共同目标是高功率密度、高效率与高可靠性。充电模块要在宽输出电压范围内保持效率，数据中心电源则强调冗余、动态响应与长期稳定。两者都大量使用 PFC + LLC/DC-DC 拓扑，对开关器件的损耗、封装与热设计提出更高要求。',
+      'PFC 级关注导通损耗、耐压与 EMI，CoolMOS™ 高压超结器件在中高功率段有优势；LLC 级关注开关损耗与寄生参数，低 Qg、低 Coss 的器件更有利。选型时要结合输入电压范围、输出功率、开关频率与散热方式，预留电压与电流裕量。',
+      '控制侧可用 XMC™ 或 PSoC™ 实现 PFC/LLC 控制、保护与通信。电流检测可用无磁芯传感器或分流器方案，注意带宽、隔离与温漂；输出电压采样要做滤波与校准，保证恒压/恒流精度。',
+      '高功率密度设计要重点关注散热、寄生电感与安规距离。建议在样机阶段做满载效率、温升、动态响应、EMI 与安规测试，再冻结器件与布局。对于充电模块，还要验证宽输出电压范围内的效率与保护。',
+      '量产阶段要确认器件供货、替代料与认证文件。力通可提供英飞凌代理、现货/询价、替代料建议与 FAE 支持，帮助在效率、成本与交期之间平衡。'
+    ],
+    advantages: [
+      { title: '高功率密度', desc: '适合 PFC/LLC 的器件组合与热设计。' },
+      { title: '宽范围效率', desc: '覆盖充电模块宽输出电压需求。' },
+      { title: '可靠性', desc: '关注安规距离、散热与保护。' },
+      { title: '供货支持', desc: '主流 MOSFET/IGBT 常备现货。' }
+    ],
+    techStrength: [
+      { title: 'PFC/LLC 设计', desc: '拓扑、器件与驱动匹配经验。' },
+      { title: '热与 EMI', desc: '高密度布局与 EMI 优化建议。' },
+      { title: '安规协同', desc: '配合安规与认证测试的资料支持。' }
+    ],
+    bom: [
+      { model: 'IPW60R041P6', role: 'PFC 主开关', keyParams: '600V/78A', url: '/products/mosfet/ipw60r041p6.html' },
+      { model: 'IPP60R099P7', role: 'PFC/辅助开关', keyParams: '600V/38A', url: '/products/mosfet/ipp60r099p7.html' },
+      { model: 'XMC1404', role: 'PFC/LLC 控制 MCU', keyParams: '48MHz/128KB Flash', url: '/products/mcu/xmc1404.html' },
+      { model: 'TLI4971', role: '输出电流检测', keyParams: '±50A', url: '/products/sensors/tli4971.html' },
+      { model: 'FF300R12ME4', role: '大功率整流/逆变级', keyParams: '1200V/300A', url: '/products/igbt/ff300r12me4.html' }
+    ],
+    scenarios: ['直流充电模块', '数据中心电源', '通信电源', '工业电源'],
+    integration: ['先确定输入/输出范围与功率密度目标，再选拓扑与器件。', 'PFC 与 LLC 要联合调试效率与 EMI。', '高密度布局要提前规划散热与安规距离。'],
+    faq: [
+      { question: '充电模块如何选择 PFC 器件？', answer: ['PFC 级关注耐压、导通损耗与 EMI，可根据功率与频率选择 CoolMOS™ 或 IGBT。', '宽输出电压场景还要评估全工况效率与热设计。'], decisionGuide: '提供功率与输出范围，获取器件组合。' },
+      { question: '数据中心电源如何做冗余与动态响应？', answer: ['可通过多模块并联、均流与冗余控制实现，控制环路要兼顾动态响应与稳定。', '器件选型要关注低载效率与长期可靠性。'], decisionGuide: '联系 FAE 获取电源方案建议。' },
+      { question: '高功率密度如何兼顾散热与安规？', answer: ['要提前规划散热路径、风道/水冷与安规距离，避免后期改板。', '建议用热仿真与样机温升联合验证。'], decisionGuide: '提交结构限制，获取热与安规建议。' },
+      { question: '如何获取电源方案 BOM 与报价？', answer: ['提供输入/输出、功率、效率与结构限制，我们会给出器件与拓扑组合。', '确认后可报价并安排样品。'], decisionGuide: '联系我们获取定制方案。' }
+    ],
+    related: [
+      { title: 'MOSFET 过热排查手册', url: '/support/troubleshooting/mosfet-overheat.html' },
+      { title: '光伏与储能逆变方案', url: '/solutions/pv-storage/' },
+      { title: 'CoolSiC/OptiMOS 新品评测', url: '/support/reviews/coolsic-optimos-review.html' }
+    ]
+  }
+];
+
+const extras = {
+  xev: [
+    '在 EMC 与功能安全方面，电驱逆变的高 dv/dt 与高 di/dt 会影响整车电磁环境，需要从驱动电阻、缓冲、屏蔽与接地多维度控制。',
+    '功能安全还要结合 MCU 安全机制、诊断覆盖与失效响应，提前规划文档与测试。',
+    '量产阶段建议锁定器件与替代方案，并核对批次与报关文件。'
+  ],
+  'pv-storage': [
+    '在并网与储能切换方面，需要关注锁相环动态、孤岛保护、并网电流谐波与电池电压宽范围变化。',
+    '储能 PCS 还要处理充放电切换时的环流与均流问题，建议控制策略与功率并联同步验证。',
+    'EMS 与电池管理之间的通信时延、采样同步与保护联动也会影响系统稳定性。',
+    '户外机型还要把温度循环、湿度与防护等级纳入结构与电气联合设计。'
+  ],
+  'industrial-drive': [
+    '在编码器与现场总线方面，伺服系统需要高分辨率反馈与低延迟通信，控制周期与总线抖动会影响定位精度。',
+    '安全相关驱动还要评估 STO 等安全功能与器件诊断能力。',
+    '功率布局上，母排寄生电感、驱动回路与散热路径会直接影响开关损耗与温升。',
+    '多轴系统还要考虑共直流母线、能量回馈与制动单元，避免再生能量导致母线过压。'
+  ],
+  'ev-charging-datacenter': [
+    '在高功率密度设计中，散热路径、风道/水冷与安规距离需要提前规划，避免后期改板。',
+    'PFC 与 LLC 的开关损耗、寄生参数与 EMI 需要联合调试，不能只看单一器件指标。',
+    '输出宽范围时，恒压/恒流精度与动态响应要一起验证。',
+    '量产阶段要确认器件供货、替代料与认证文件，降低供应波动风险。'
+  ]
+};
+
+const closings = [
+  '在项目实施过程中，建议把选型、样品验证、热设计、EMC 与量产备货作为一个闭环管理：先明确功率、环境与认证边界，再用样机验证开关波形、温升与保护动作，最后锁定器件、替代料与批次信息。',
+  '这样既能降低供应波动对项目的影响，也能在后期变更时快速定位问题。对于长周期项目，建议提前规划安全库存与替代料验证，并与 FAE 保持联调记录。',
+  '量产后定期复核批次与供货状态，避免单一料号影响交付。'
+];
+
+for (const s of solutions) {
+  for (const para of extras[s.slug] || []) {
+    if (s.overview.join('').length >= 800) break;
+    s.overview.push(para);
+  }
+  for (const para of closings) {
+    if (s.overview.join('').length >= 800) break;
+    s.overview.push(para);
+  }
+}
+
+const output = {
+  brand,
+  page: {
+    id: 'solutions-list',
+    type: 'solutions-list',
+    seo: {
+      title: '英飞凌解决方案_新能源汽车/光伏储能/工业驱动/电源-力通',
+      description: '力通英飞凌行业解决方案，覆盖新能源汽车三电、光伏储能、工业电机驱动、充电桩与数据中心电源，提供方案框图、BOM 与选型支持。',
+      keywords: ['英飞凌解决方案', '新能源汽车英飞凌方案', '光伏逆变英飞凌', '工业驱动英飞凌', '充电桩英飞凌'],
+      canonical: '/solutions/'
+    },
+    breadcrumbs: [{ name: '首页', url: '/' }, { name: '解决方案', url: '/solutions/' }],
+    content: { intro: '按行业组织英飞凌器件组合与方案框图，帮助系统工程师快速理解拓扑、BOM 与选型要点。' },
+    faq: [
+      { question: '解决方案是否可以直接套用？', answer: ['方案框图与 BOM 用于选型参考，实际项目需要结合功率等级、散热、安规与成本做调整。', '可提交项目参数，由 FAE 给出定制化组合。'], decisionGuide: '联系 FAE 获取定制方案。' },
+      { question: '方案中的型号是否都有现货？', answer: ['常用型号多数有现货，紧缺批次会给出交期与替代建议。', 'BOM 中的型号均可点击进入详情页查看库存状态。'], decisionGuide: '提交 BOM 获取实时库存与报价。' },
+      { question: '如何获取完整方案文档？', answer: ['可通过联系我们提交行业、功率与目标，我们会提供框图、BOM 与选型说明。', '涉及认证或特殊环境时，可同步提供资料清单。'], decisionGuide: '联系我们获取完整方案。' }
+    ]
+  },
+  solutions
+};
+
+await writeFile(outFile, JSON.stringify(output, null, 2) + '\n', 'utf8');
+console.log(`[seed-solutions] solutions=${solutions.length}, written ${outFile}`);
