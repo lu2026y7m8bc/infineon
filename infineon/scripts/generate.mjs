@@ -225,12 +225,12 @@ function avatarImage(author, size = 48) {
   return `<svg viewBox="0 0 48 48" width="${size}" height="${size}" role="img" aria-label="${esc(author.name)}"><circle cx="24" cy="24" r="24" fill="#e6f2fb"></circle><text x="24" y="30" text-anchor="middle" fill="#0072ce" font-size="18">${esc(initial)}</text></svg>`;
 }
 
-function card({ title, text, url, meta, media, cta = '查看详情' }) {
-  return `<article class="card"><div class="card-media" aria-hidden="true">${media || ''}</div><div class="card-body"><h3 class="card-title">${esc(title)}</h3><p class="card-text">${esc(text)}</p>${meta ? `<span class="card-meta">${esc(meta)}</span>` : ''}<a class="card-link" href="${attr(url)}">${esc(cta)}</a></div></article>`;
+function card({ title, text, url, meta, media, cta = '查看详情', mediaClass = '' }) {
+  return `<article class="card"><div class="card-media${mediaClass ? ' ' + mediaClass : ''}" aria-hidden="true">${media || ''}</div><div class="card-body"><h3 class="card-title">${esc(title)}</h3><p class="card-text">${esc(text)}</p>${meta ? `<span class="card-meta">${esc(meta)}</span>` : ''}<a class="card-link" href="${attr(url)}">${esc(cta)}</a></div></article>`;
 }
 
 function feature({ title, desc, icon }) {
-  return `<article class="card card--icon"><div class="card-media" aria-hidden="true">${mediaImage(icon, title)}</div><div class="card-body"><h3 class="card-title">${esc(title)}</h3><p class="card-text">${esc(desc)}</p></div></article>`;
+  return `<article class="card card--icon"><div class="card-media card-media--icon" aria-hidden="true">${mediaImage(icon, title)}</div><div class="card-body"><h3 class="card-title">${esc(title)}</h3><p class="card-text">${esc(desc)}</p></div></article>`;
 }
 
 function faqHtml(faq) {
@@ -314,7 +314,8 @@ function articleCard(a, catName) {
     text: a.excerpt || a.summary || '',
     url: `/support/${a.category}/${a.slug}.html`,
     meta: `${catName} · ${a.date}`,
-    media: mediaImage(`assets/img/icon-${a.category}.svg`, a.title)
+    media: mediaImage(`assets/img/icon-${a.category}.svg`, a.title),
+    mediaClass: 'card-media--icon'
   });
 }
 
@@ -462,7 +463,7 @@ async function buildHome() {
     HERO_TRUST: c.hero.trust.map((t) => `<span>${esc(t)}</span>`).join(''),
     HERO_ART: fallbackSvg('英飞凌器件与方案', 400, 300),
     ADVANTAGES: c.advantages.map(feature).join(''),
-    CATEGORIES: c.categories.map((cat) => card({ title: cat.name, text: cat.desc, url: cat.url, meta: `${cat.count} 个型号`, media: mediaImage(cat.icon, cat.name) })).join(''),
+    CATEGORIES: c.categories.map((cat) => card({ title: cat.name, text: cat.desc, url: cat.url, meta: `${cat.count} 个型号`, media: mediaImage(cat.icon, cat.name), mediaClass: 'card-media--icon' })).join(''),
     SOLUTIONS: c.solutions.map((s) => card({ title: s.title, text: s.summary, url: s.url, meta: s.industry, media: mediaImage('assets/img/solution-default.svg', s.title) })).join(''),
     ARTICLES: c.articles.map((a) => articleCard(a, '技术支持')).join(''),
     NEWS: c.news.map(newsCard).join(''),
@@ -487,7 +488,7 @@ async function buildProductsList() {
     PAGE_TITLE: '英飞凌产品中心',
     PAGE_DESC: esc(p.content.intro),
     GUIDE_STRIP: `<div class="sidebar-card"><h2 class="sidebar-title">如何选型？</h2><p>从主频、Flash、外设与封装四个维度建立选型框架，再结合供货状态收敛型号。</p><a class="btn btn-secondary" href="/support/guides/how-to-choose-infineon-mcu.html">阅读选型指南</a></div>`,
-    CATEGORY_CARDS: cats.map((c) => card({ title: c.name, text: c.description.slice(0, 90) + '…', url: `/products/${c.slug}/`, meta: `${c.models.length} 个型号`, media: mediaImage(c.icon, c.name) })).join(''),
+    CATEGORY_CARDS: cats.map((c) => card({ title: c.name, text: c.description.slice(0, 90) + '…', url: `/products/${c.slug}/`, meta: `${c.models.length} 个型号`, media: mediaImage(c.icon, c.name), mediaClass: 'card-media--icon' })).join(''),
     FAQ: faqHtml(p.faq)
   };
   await writePage('products/index.html', fill(tpl, tokens));
@@ -686,7 +687,7 @@ async function buildSupportArticle(a) {
   const related = a.related
     .map((slug) => support.articles.find((x) => x.slug === slug))
     .filter(Boolean)
-    .map((x) => card({ title: x.title, text: x.excerpt, url: `/support/${x.category}/${x.slug}.html`, meta: `${support.categories.find((c) => c.slug === x.category).name} · ${x.date}`, media: mediaImage(`assets/img/icon-${x.category}.svg`, x.title) }))
+    .map((x) => card({ title: x.title, text: x.excerpt, url: `/support/${x.category}/${x.slug}.html`, meta: `${support.categories.find((c) => c.slug === x.category).name} · ${x.date}`, media: mediaImage(`assets/img/icon-${x.category}.svg`, x.title), mediaClass: 'card-media--icon' }))
     .join('');
   const seo = {
     title: `${a.title}_英飞凌技术文章-力通`,

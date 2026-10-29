@@ -1763,3 +1763,25 @@ body.nav-open {
 
 /* 无 JS 时移动导航可见（移动端） */
 .nav-toggle { touch-action: manipulation; }
+
+/* 首页/列表图标尺寸修正：图标卡片固定高度，图标 48px 居中 */
+.card-media.card-media--icon {
+  height: 96px;
+  aspect-ratio: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-primary-light);
+}
+
+.card-media.card-media--icon img,
+.card-media.card-media--icon svg {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.card--icon .card-media {
+  height: 96px;
+  aspect-ratio: auto;
+}
