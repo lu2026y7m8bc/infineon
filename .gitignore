@@ -8,3 +8,4 @@ link-report.txt
 infineon/link-report.txt
 infineon/dist/
 infineon/data/.backup/
+.wrangler/
