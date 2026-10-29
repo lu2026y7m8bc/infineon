@@ -844,6 +844,7 @@ async function buildAbout() {
     CUSTOMS: c.customsDocs.map((d) => `<div class="card"><div class="card-media"><a href="/${String(d.image).replace(/^\//, '')}" target="_blank" rel="noopener" aria-label="查看 ${esc(d.category)} 报关单大图">${mediaImage(d.image, `${d.category} 报关单`)}</a></div><div class="card-body"><h3 class="card-title">${esc(d.category)}</h3><p class="card-text">${esc(d.desc)}</p></div></div>`).join(''),
     ADVANTAGES: c.advantages.map((a) => feature({ title: a.title, desc: a.desc })).join(''),
     CASES: c.cases.map((x) => card({ title: x.title, text: x.desc, url: x.url || '/solutions/', meta: x.industry, media: mediaImage('assets/img/solution-default.svg', x.title) })).join(''),
+    SERVICE_AREAS: ((about.global.keywords && about.global.keywords.region) || []).map((x) => esc(x)).join('、'),
     FAQ: faqHtml(p.faq),
     DETAIL_CTA: partials['detail-cta']
   };

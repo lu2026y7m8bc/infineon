@@ -6,7 +6,7 @@
   "scripts": {
     "seed": "node scripts/backup-data.mjs && node scripts/seed-svg.mjs && node scripts/seed-products.mjs && node scripts/seed-solutions.mjs && node scripts/seed-support.mjs && node scripts/seed-news.mjs && node scripts/pad-json-faq.mjs",
     "generate": "node scripts/generate.mjs",
-    "validate": "node scripts/validate-json.mjs && node scripts/validate-links.mjs",
+    "validate": "node scripts/validate-json.mjs && node scripts/validate-links.mjs && node scripts/verify-site.mjs",
     "dist": "node scripts/build-dist.mjs",
     "build": "npm run seed && npm run generate && npm run validate && npm run dist"
   }
