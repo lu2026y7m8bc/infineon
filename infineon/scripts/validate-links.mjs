@@ -10,7 +10,7 @@ import path from 'node:path';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
 
-const SKIP_DIRS = new Set(['assets', 'data', 'scripts', 'templates', 'node_modules']);
+const SKIP_DIRS = new Set(['assets', 'data', 'scripts', 'templates', 'node_modules', 'dist']);
 
 async function walk(dir, out = []) {
   let entries;
@@ -56,6 +56,13 @@ async function exists(target) {
   }
 }
 
+async function resolveTarget(target) {
+  if (await exists(target)) return target;
+  if (await exists(target + '.html')) return target + '.html';
+  if (await exists(path.join(target, 'index.html'))) return path.join(target, 'index.html');
+  return null;
+}
+
 async function main() {
   const files = await walk(root);
   const problems = [];
@@ -84,12 +91,13 @@ async function main() {
       const target = clean.startsWith('/')
         ? path.join(root, clean)
         : path.resolve(path.dirname(file), clean);
-      if (!(await exists(target))) {
+      const resolved = await resolveTarget(target);
+      if (!resolved) {
         problems.push({ file, link, reason: 'missing target' });
         continue;
       }
       if (hash) {
-        const targetHtml = await readFile(target, 'utf8');
+        const targetHtml = await readFile(resolved, 'utf8');
         if (!anchorExists(targetHtml, hash)) problems.push({ file, link, reason: 'missing target anchor' });
       }
     }

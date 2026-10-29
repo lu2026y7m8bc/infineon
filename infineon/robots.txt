@@ -3,4 +3,4 @@ Allow: /
 Disallow: /scripts/
 Disallow: /data/
 Disallow: /templates/
-Sitemap: https://infineon.pages.dev/sitemap.xml
+Sitemap: https://infineon-111.pages.dev/sitemap.xml

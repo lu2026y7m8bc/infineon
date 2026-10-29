@@ -28,17 +28,29 @@ async function readText(p) {
 async function writePage(rel, html) {
   const full = path.join(root, rel);
   await mkdir(path.dirname(full), { recursive: true });
-  await writeFile(full, html, 'utf8');
-  const url = '/' + rel.replace(/\\/g, '/').replace(/index\.html$/, '');
+  let out = String(html);
+  out = out.replace(/href="(\/[^"#?]*?)\/index\.html(?=([#?"]))/g, 'href="$1/"');
+  out = out.replace(/href="(\/[^"#?]*?)\.html(?=([#?"]))/g, 'href="$1"');
+  await writeFile(full, out, 'utf8');
+  const url = '/' + rel.replace(/\\/g, '/').replace(/index\.html$/, '').replace(/\.html$/, '');
   generated.push(url);
 }
 
 const esc = (s = '') => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const attr = esc;
+
+function publicPath(p) {
+  if (!p) return p;
+  if (p.endsWith('/')) return p;
+  if (p.endsWith('/index.html')) return p.slice(0, -'index.html'.length);
+  if (p.endsWith('.html')) return p.slice(0, -'.html'.length);
+  return p;
+}
+
 const abs = (p) => {
   if (!p) return BASE;
   if (typeof p === 'string' && p.startsWith('http')) return p;
-  return BASE + (String(p).startsWith('/') ? p : '/' + p);
+  return BASE + publicPath(String(p).startsWith('/') ? p : '/' + p);
 };
 
 function seoTokens(seo) {
@@ -410,8 +422,8 @@ function validateData() {
 }
 
 async function pruneStale() {
-  const keep = new Set(generated.map((u) => (u === '/' ? 'index.html' : u.endsWith('/') ? `${u.slice(1)}index.html` : u.slice(1))));
-  const skip = new Set(['templates', 'assets', 'data', 'scripts', 'node_modules']);
+  const keep = new Set(generated.map((u) => (u === '/' ? 'index.html' : u.endsWith('/') ? `${u.slice(1)}index.html` : `${u.slice(1)}.html`)));
+  const skip = new Set(['templates', 'assets', 'data', 'scripts', 'node_modules', 'dist']);
   async function walk(dir) {
     let entries;
     try {

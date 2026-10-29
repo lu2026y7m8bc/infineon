@@ -3,10 +3,10 @@
 > 力通提供英飞凌代理、现货、授权渠道与 FAE 技术支持，覆盖 MCU、IGBT、MOSFET 与传感器。
 
 ## 核心页面
-- 首页: https://infineon.pages.dev/
-- 产品中心: https://infineon.pages.dev/products/
-- 解决方案: https://infineon.pages.dev/solutions/
-- 技术支持: https://infineon.pages.dev/support/
-- 新闻中心: https://infineon.pages.dev/news/
-- 关于我们: https://infineon.pages.dev/about/
-- 联系我们: https://infineon.pages.dev/contact/
+- 首页: https://infineon-111.pages.dev/
+- 产品中心: https://infineon-111.pages.dev/products/
+- 解决方案: https://infineon-111.pages.dev/solutions/
+- 技术支持: https://infineon-111.pages.dev/support/
+- 新闻中心: https://infineon-111.pages.dev/news/
+- 关于我们: https://infineon-111.pages.dev/about/
+- 联系我们: https://infineon-111.pages.dev/contact/

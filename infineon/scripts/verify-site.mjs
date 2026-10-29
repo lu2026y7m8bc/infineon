@@ -7,7 +7,7 @@ import path from 'node:path';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
-const BASE = 'https://infineon.pages.dev';
+const BASE = (process.env.SITE_BASE || 'https://infineon.pages.dev').replace(/\/+$/, '');
 const SKIP = new Set(['templates', 'dist', 'data', 'scripts', 'assets', 'node_modules']);
 
 const pages = [];
@@ -25,7 +25,7 @@ await walk(root);
 
 const errors = [];
 const fail = (msg) => errors.push(msg);
-const relOf = (file) => '/' + path.relative(root, file).replace(/\\/g, '/').replace(/index\.html$/, '');
+const relOf = (file) => '/' + path.relative(root, file).replace(/\\/g, '/').replace(/index\.html$/, '').replace(/\.html$/, '');
 
 const titles = new Map();
 const descs = new Map();
@@ -56,17 +56,17 @@ function requiredTypes(url) {
   if (url === '/') return ['Organization', 'WebSite', 'FAQPage'];
   if (url === '/products/') return ['ItemList', 'FAQPage'];
   if (/^\/products\/[^/]+\/$/.test(url)) return ['BreadcrumbList', 'ItemList', 'Product', 'FAQPage'];
-  if (/^\/products\/[^/]+\/[^/]+\.html$/.test(url)) return ['BreadcrumbList', 'Product', 'FAQPage'];
+  if (/^\/products\/[^/]+\/[^/]+$/.test(url)) return ['BreadcrumbList', 'Product', 'FAQPage'];
   if (url === '/solutions/') return ['ItemList', 'FAQPage'];
   if (/^\/solutions\/[^/]+\/$/.test(url)) return ['BreadcrumbList', 'FAQPage', 'Article'];
   if (url === '/support/') return ['ItemList', 'FAQPage'];
   if (/^\/support\/(guides|app-notes|troubleshooting|reviews)\/$/.test(url)) return ['BreadcrumbList', 'ItemList'];
-  if (/^\/support\/(guides|app-notes|troubleshooting|reviews)\/[^/]+\.html$/.test(url)) return ['BreadcrumbList', 'TechArticle', 'FAQPage'];
-  if (/^\/support\/authors\/[^/]+\.html$/.test(url)) return ['BreadcrumbList', 'ProfilePage'];
-  if (/^\/support\/tags\/[^/]+\.html$/.test(url)) return ['BreadcrumbList', 'ItemList'];
+  if (/^\/support\/(guides|app-notes|troubleshooting|reviews)\/[^/]+$/.test(url)) return ['BreadcrumbList', 'TechArticle', 'FAQPage'];
+  if (/^\/support\/authors\/[^/]+$/.test(url)) return ['BreadcrumbList', 'ProfilePage'];
+  if (/^\/support\/tags\/[^/]+$/.test(url)) return ['BreadcrumbList', 'ItemList'];
   if (url === '/news/') return ['ItemList'];
   if (/^\/news\/(company|industry)\/$/.test(url)) return ['BreadcrumbList', 'ItemList'];
-  if (/^\/news\/[^/]+\.html$/.test(url)) return ['BreadcrumbList'];
+  if (/^\/news\/[^/]+$/.test(url)) return ['BreadcrumbList'];
   if (url === '/about/') return ['BreadcrumbList', 'FAQPage'];
   if (url === '/contact/') return ['BreadcrumbList'];
   return [];
@@ -108,6 +108,9 @@ for (const file of pages) {
   const types = typesOf(html);
   for (const t of requiredTypes(url)) {
     if (!types.has(t)) fail(`${url}: missing schema ${t}`);
+  }
+  if (/^\/news\/[^/]+$/.test(url) && !types.has('NewsArticle') && !types.has('Article')) {
+    fail(`${url}: missing schema NewsArticle/Article`);
   }
   if (!sitemapUrls.has(url)) fail(`${url}: missing from sitemap`);
 }
