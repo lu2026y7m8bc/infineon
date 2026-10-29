@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{SEO_TITLE}}</title>
+  <meta name="description" content="{{SEO_DESCRIPTION}}">
+  <meta name="keywords" content="{{SEO_KEYWORDS}}">
+  <link rel="canonical" href="{{CANONICAL}}">
+  <meta property="og:title" content="{{OG_TITLE}}">
+  <meta property="og:description" content="{{OG_DESCRIPTION}}">
+  <meta property="og:url" content="{{OG_URL}}">
+  <meta property="og:type" content="article">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  {{SCHEMA}}
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  {{HEADER}}
+  <main id="main">
+    <div class="news-banner">
+      <div class="container">
+        <div class="news-meta">{{DATE}} · {{CATEGORY_LABEL}}</div>
+        <h1>{{ARTICLE_TITLE}}</h1>
+      </div>
+    </div>
+
+    <div class="container section">
+      <div class="layout-content-sidebar">
+        <div>
+          <div class="article-content">{{ARTICLE_CONTENT}}</div>
+          <div class="section">{{SHARE}}</div>
+          <section class="section">
+            <h2>推荐阅读</h2>
+            <div class="grid grid-3">{{RELATED}}</div>
+          </section>
+        </div>
+        {{SIDEBAR_NEWS}}
+      </div>
+    </div>
+    {{DETAIL_CTA}}
+  </main>
+  {{FOOTER}}
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

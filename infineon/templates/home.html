@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{SEO_TITLE}}</title>
+  <meta name="description" content="{{SEO_DESCRIPTION}}">
+  <meta name="keywords" content="{{SEO_KEYWORDS}}">
+  <link rel="canonical" href="{{CANONICAL}}">
+  <meta property="og:title" content="{{OG_TITLE}}">
+  <meta property="og:description" content="{{OG_DESCRIPTION}}">
+  <meta property="og:url" content="{{OG_URL}}">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  {{SCHEMA}}
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  {{HEADER}}
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <h1>{{HERO_TITLE}}</h1>
+          <p>{{HERO_SUBTITLE}}</p>
+          <div class="hero-actions">{{HERO_ACTIONS}}</div>
+          <div class="hero-trust">{{HERO_TRUST}}</div>
+        </div>
+        <div class="hero-art" aria-hidden="true">{{HERO_ART}}</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="grid grid-4">{{ADVANTAGES}}</div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">产品分类</h2>
+          <p class="section-desc">按分类进入型号表格，快速完成选型。</p>
+        </div>
+        <div class="grid grid-4">{{CATEGORIES}}</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">解决方案</h2>
+          <p class="section-desc">面向行业的器件组合与方案框图。</p>
+        </div>
+        <div class="grid grid-4">{{SOLUTIONS}}</div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">技术支持</h2>
+          <p class="section-desc">选型指南、应用笔记与问题排查。</p>
+        </div>
+        <div class="grid grid-3">{{ARTICLES}}</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">最新动态</h2>
+          <p class="section-desc">公司新闻与行业动态。</p>
+        </div>
+        <div class="grid grid-3">{{NEWS}}</div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <h2 class="section-title">常见问题</h2>
+        <div class="faq-grid">{{FAQ}}</div>
+      </div>
+    </section>
+
+    <section class="cta-block">
+      <div class="container">
+        <h2>{{CTA_TITLE}}</h2>
+        <p>{{CTA_DESC}}</p>
+        <div class="cta-actions">{{CTA_ACTIONS}}</div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

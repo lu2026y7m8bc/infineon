@@ -67,20 +67,20 @@
 | T2.5 | 编写 `support.json`（4 分类/4 文章/标签/作者/FAQ） | T2.1 | 文章 ≥800 字、标签/作者齐 | [x] |
 | T2.6 | 编写 `news.json`（公司 2 + 行业 2 + 来源 + 推荐） | T2.1 | 分区正确、≥800 字/篇 | [x] |
 | T2.7 | 编写 `about.json`（简介/团队/历程/报关单/优势/案例/联系/FAQ） | T2.1 | 含团队实力、每分类报关单、FAQ 4–8 | [x] |
-| T2.8 | 模板 `home.html` | P1、T2.2 | 9 区块完整、nav/footer 一致 | [~] |
-| T2.9 | 模板 `products-list.html` | P1、T2.3 | 4 分类卡 | [ ] |
-| T2.10 | 模板 `product-category.html`（应用领域/优势对比/动态表格/FAQ） | P1、T2.3 | 模块齐全、表格可筛选、FAQ 与表格互补 | [ ] |
-| T2.11 | 模板 `product-detail.html`（Tab/规格表/配套/相关侧栏） | P1、T2.3 | 双栏/Tab/斑马纹/侧栏槽位 | [ ] |
-| T2.12 | 模板 `solutions-list.html` | P1、T2.4 | 摘要卡 | [ ] |
-| T2.13 | 模板 `solution-detail.html`（框图/技术实力/BOM/FAQ/侧栏） | P1、T2.4 | 模块齐全、BOM 内链槽位 | [ ] |
-| T2.14 | 模板 `support-list.html`（Tabs） | P1、T2.5 | Tabs 四分类 | [ ] |
-| T2.15 | 模板 `support-detail.html`（TOC/作者/标签/相关侧栏/FAQ） | P1、T2.5 | TOC/作者/标签/相关/FAQ 槽位齐全 | [ ] |
-| T2.16 | 模板 `news-list.html`（公司/行业分区） | P1、T2.6 | 两区不混排 | [ ] |
-| T2.17 | 模板 `news-detail.html`（Banner/分享/推荐/新闻导航） | P1、T2.6 | 单栏+Banner+分享+推荐+窄栏导航 | [ ] |
-| T2.18 | 模板 `about.html`（团队实力/报关单/FAQ + 联系页组件） | P1、T2.7 | 模块齐全、contact 组件可用 | [ ] |
-| T2.19 | 辅助模板 `author.html`（作者页） | P1、T2.5 | 名片/简介/文章列表槽位 | [ ] |
-| T2.20 | 辅助模板 `tag.html`（标签聚合页） | P1、T2.5 | 说明/文章列表/相关标签槽位 | [ ] |
-| T2.21 | 生成脚本完整实现（JSON→模板→HTML） | T2.8–T2.20 | 幂等生成、路径正确 | [ ] |
+| T2.8 | 模板 `home.html` | P1、T2.2 | 9 区块完整、nav/footer 一致 | [x] |
+| T2.9 | 模板 `products-list.html` | P1、T2.3 | 4 分类卡 | [x] |
+| T2.10 | 模板 `product-category.html`（应用领域/优势对比/动态表格/FAQ） | P1、T2.3 | 模块齐全、表格可筛选、FAQ 与表格互补 | [x] |
+| T2.11 | 模板 `product-detail.html`（Tab/规格表/配套/相关侧栏） | P1、T2.3 | 双栏/Tab/斑马纹/侧栏槽位 | [x] |
+| T2.12 | 模板 `solutions-list.html` | P1、T2.4 | 摘要卡 | [x] |
+| T2.13 | 模板 `solution-detail.html`（框图/技术实力/BOM/FAQ/侧栏） | P1、T2.4 | 模块齐全、BOM 内链槽位 | [x] |
+| T2.14 | 模板 `support-list.html`（Tabs） | P1、T2.5 | Tabs 四分类 | [x] |
+| T2.15 | 模板 `support-detail.html`（TOC/作者/标签/相关侧栏/FAQ） | P1、T2.5 | TOC/作者/标签/相关/FAQ 槽位齐全 | [x] |
+| T2.16 | 模板 `news-list.html`（公司/行业分区） | P1、T2.6 | 两区不混排 | [x] |
+| T2.17 | 模板 `news-detail.html`（Banner/分享/推荐/新闻导航） | P1、T2.6 | 单栏+Banner+分享+推荐+窄栏导航 | [x] |
+| T2.18 | 模板 `about.html`（团队实力/报关单/FAQ + 联系页组件） | P1、T2.7 | 模块齐全、contact 组件可用 | [x] |
+| T2.19 | 辅助模板 `author.html`（作者页） | P1、T2.5 | 名片/简介/文章列表槽位 | [x] |
+| T2.20 | 辅助模板 `tag.html`（标签聚合页） | P1、T2.5 | 说明/文章列表/相关标签槽位 | [x] |
+| T2.21 | 生成脚本完整实现（JSON→模板→HTML） | T2.8–T2.20 | 幂等生成、路径正确 | [~] |
 | T2.22 | 模板↔JSON 字段对齐校验 | T2.21 | 无缺字段、无未用字段告警 | [ ] |
 | T2.23 | 三套详情模板结构差异核验 | T2.11/T2.13/T2.15/T2.17 | 电商/博客/杂志结构明显不同 | [ ] |
 
