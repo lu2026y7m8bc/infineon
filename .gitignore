@@ -9,3 +9,4 @@ infineon/link-report.txt
 infineon/dist/
 infineon/data/.backup/
 .wrangler/
+lh.json
